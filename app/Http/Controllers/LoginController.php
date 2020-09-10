@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Redirect;
 
 class LoginController extends Controller
 {
@@ -13,11 +15,14 @@ class LoginController extends Controller
             // Authentication passed...
             $user = Auth::user();
             if ($user->super == 1) {
-                return redirect()->intended('dashboard.index');
+                return Redirect::route('dashboard');
             }
             else{
-                return redirect()->intended('employe.index');
+                return Redirect::route('employe.index');
             }
+        }
+        else{
+            return Redirect::back();
         }
     }
 }

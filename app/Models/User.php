@@ -17,9 +17,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','idSociete'
     ];
 
+    protected $visible = ['name', 'email', 'password','idSociete'];
+
+    public static $rules=[
+        'name'=>'required|string',
+        'email'=>'required|string',
+        'password'=>'required|string',
+        'idSociete'=>'required|integer'
+    ];
+
+    public static $updateRules=[
+        'name'=>'required|string',
+        'email'=>'required|string',
+        'password'=>'nullable|string',
+        'idSociete'=>'nullable|integer'
+    ];
     /**
      * The attributes that should be hidden for arrays.
      *

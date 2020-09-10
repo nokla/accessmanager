@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +21,13 @@ Route::get('/', function () {
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('dashboard.index');
-    });
+    })->name('dashboard');
     route::resource('societe','App\Http\Controllers\SocieteController');
+    route::resource('user','App\Http\Controllers\UserController');
+    route::resource('employe','App\Http\Controllers\EmployeController');
 });
 
-Route::post('logins', 'App\Http\Controllers\LoginController@login')->name('postLogin');
+Route::post('login', [LoginController::class,'login'] )->name('postLogin');
 
 Route::get('login', function () {
     return view('login');

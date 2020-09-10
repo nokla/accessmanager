@@ -4,19 +4,29 @@
     <div class="row justify-content-center" style="margin-top:100px">
         <div class="col-md-7">
             <div class="row justify-content-center">
-                <div class="col-5">
-                    <div class="card text-center" style="width: 18rem;">
-                        <i class="card-img-top far fa-building fa-3x"></i>
-                        <div class="card-body">
-                            <h5 class="card-title"> <a href="{{ route('societe.index')}}">Societes</a> </h5>
+                @if(Auth::user()->super==1)
+                    <div class="col-4">
+                        <div class="card text-center" style="width: 18rem;">
+                            <i class="card-img-top far fa-building fa-3x"></i>
+                            <div class="card-body">
+                                <h5 class="card-title"> <a href="{{ route('societe.index')}}">Societes</a> </h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-5">
+                    <div class="col-4">
+                        <div class="card text-center" style="width: 18rem;">
+                            <i class="card-img-top fas fa-users fa-3x"></i>
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="{{ route('user.index')}}">Utilisateurs</a> </h5>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                <div class="col-4">
                     <div class="card text-center" style="width: 18rem;">
-                        <i class="card-img-top fas fa-users fa-3x"></i>
+                        <i class="card-img-top fas fa-user-tag fa-3x"></i>
                         <div class="card-body">
-                            <h5 class="card-title">Utilisateurs</h5>
+                            <h5 class="card-title"><a href="{{ route('employe.index')}}">Personels</a> </h5>
                         </div>
                     </div>
                 </div>

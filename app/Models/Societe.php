@@ -13,6 +13,10 @@ class Societe extends Model
         'name'
     ];
 
+    public static $rules=[
+        'name'=>'required|string'
+    ];
+
     public function Employes(){
         return $this->hasMany('App\Models\Employe','idSociete','id');
     }

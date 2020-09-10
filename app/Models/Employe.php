@@ -12,6 +12,20 @@ class Employe extends Model
         'name', 'cin', 'status', 'qrcode', 'idSociete'
     ];
 
+    public static $rules=[
+        'name'=>'required|string',
+        'cin'=>'required|string',
+        'status'=>'required|integer',
+        'idSociete'=>'nullable|integer'
+    ];
+
+    public static $updateRules=[
+        'name'=>'required|string',
+        'cin'=>'required|string',
+        'status'=>'nullable|integer',
+        'idSociete'=>'nullable|integer'
+    ];
+
     public function Societe()
     {
         return $this->belongsTo('App\Models\Societe','idSociete');

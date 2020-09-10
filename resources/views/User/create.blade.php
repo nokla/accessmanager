@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
  <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-7">Modifier Employe</h1>
+    <h1 class="display-7">Ajouter utilisateur</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -14,36 +14,30 @@
         </ul>
       </div><br />
     @endif
-        {{Form::open(['method'=>'patch','route' => ['employe.update',$employe->id]])}}
+        {{Form::open(['route' => 'user.store'])}}
           @csrf
           <div class="form-group">    
               <label for="name">Nom :</label>
-              <input type="text" class="form-control" value="{{$employe->name}}" name="name"/>
+              <input type="text" class="form-control" name="name"/>
           </div>  
           <div class="form-group">    
-              <label for="cin">CIN :</label>
-              <input type="text" class="form-control" value="{{$employe->CIN}}" name="cin"/>
+              <label for="email">email :</label>
+              <input type="text" class="form-control" name="email"/>
           </div>  
           <div class="form-group">    
-              <label for="status">Status :</label>
-                <select class="form-control" name="status">
-                    <option value="">--------------</option>
-                    <option value="1">Activer</option>
-                    <option value="0">Desactiver</option>
-                </select>
+              <label for="password">Password :</label>
+              <input type="text" class="form-control" name="password"/>
           </div>  
-          @if(isset($societes))
           <div class="form-group">    
                 <label for="name">Societe :</label>
-                <select class="form-control" name="idSociete">
+                <select name="idSociete">
                     <option value="">--------------</option>
                     @foreach($societes as $societe)
                         <option value="{{$societe->id}}">{{$societe->name}}</option>
                     @endforeach
                 </select>
-          </div>       
-          @endif                        
-          <button type="submit" class="btn btn-primary-outline">Modifier</button>
+          </div>                               
+          <button type="submit" class="btn btn-primary-outline">Ajouter</button>
           {{ Form::close() }}
   </div>
 </div>

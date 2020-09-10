@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Societe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Redirect;
 
 class SocieteController extends Controller
 {
@@ -14,7 +16,7 @@ class SocieteController extends Controller
      */
     public function index()
     {
-        $societes = Societe::all();
+        $societes = Societe::paginate(8);
         return View('societe.index',compact('societes'));
     }
 
@@ -25,7 +27,7 @@ class SocieteController extends Controller
      */
     public function create()
     {
-        //
+        return View('societe.create');
     }
 
     /**
@@ -36,7 +38,15 @@ class SocieteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $oInputs = $request->all();
+        $validation = Validator::make($oInputs,Societe::$rules);
+        if ($validation->passes()) {
+            $societe = new Societe;
+            $societe->name = $oInputs['name'];
+            $societe->save();
+            return Redirect::route('societe.index');
+        }
+        return Redirect::back();
     }
 
     /**
@@ -58,7 +68,7 @@ class SocieteController extends Controller
      */
     public function edit(Societe $societe)
     {
-        //
+        return View('societe.edit',compact('societe'));
     }
 
     /**
@@ -70,7 +80,13 @@ class SocieteController extends Controller
      */
     public function update(Request $request, Societe $societe)
     {
-        //
+        $oInputs = $request->all();
+        $validation = Validator::make($oInputs,Societe::$rules);
+        if ($validation->passes()) {
+            $societe->update($oInputs);
+            return Redirect::route('societe.index');
+        }
+        return Redirect::back();
     }
 
     /**
@@ -81,6 +97,7 @@ class SocieteController extends Controller
      */
     public function destroy(Societe $societe)
     {
-        //
+        $societe->delete();
+        return Redirect::route('societe.index');
     }
 }

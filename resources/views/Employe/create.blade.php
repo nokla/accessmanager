@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
  <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-7">Modifier Employe</h1>
+    <h1 class="display-7">Ajouter Employe</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -14,20 +14,19 @@
         </ul>
       </div><br />
     @endif
-        {{Form::open(['method'=>'patch','route' => ['employe.update',$employe->id]])}}
+        {{Form::open(['route' => 'employe.store'])}}
           @csrf
           <div class="form-group">    
               <label for="name">Nom :</label>
-              <input type="text" class="form-control" value="{{$employe->name}}" name="name"/>
+              <input type="text" class="form-control" name="name"/>
           </div>  
           <div class="form-group">    
               <label for="cin">CIN :</label>
-              <input type="text" class="form-control" value="{{$employe->CIN}}" name="cin"/>
+              <input type="text" class="form-control" name="cin"/>
           </div>  
           <div class="form-group">    
               <label for="status">Status :</label>
                 <select class="form-control" name="status">
-                    <option value="">--------------</option>
                     <option value="1">Activer</option>
                     <option value="0">Desactiver</option>
                 </select>
@@ -43,7 +42,7 @@
                 </select>
           </div>       
           @endif                        
-          <button type="submit" class="btn btn-primary-outline">Modifier</button>
+          <button type="submit" class="btn btn-primary-outline">Ajouter</button>
           {{ Form::close() }}
   </div>
 </div>
