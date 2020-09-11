@@ -46,7 +46,7 @@
     </div>
 </nav>
 
-    <div class="cotainer">
+    <div class="container">
         @yield('content')
     </div>
 </body>

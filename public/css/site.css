@@ -369,6 +369,11 @@ input[type="password"]:placeholder {
     -o-transition: .5s all;
     transition: .5s all;
 }
+.main-content{
+    display: grid;
+    height: 75%;
+    align-items: center;
+}
 .item-dashbord a{
     text-decoration: none;
     display: block;
