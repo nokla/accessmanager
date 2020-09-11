@@ -448,6 +448,9 @@ input[type="password"]:placeholder {
     color: #00B0A5;
     background-color: transparent;
 }
+.header-top-search{
+    justify-content: space-between;
+}
 .header-top-search .bloc-form-search{
     margin-bottom: 0;
 }

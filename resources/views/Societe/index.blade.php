@@ -5,9 +5,9 @@
     <h1 class="titre-page-default">Societe</h1>   
     <div class="d-flex align-items-center header-top-search">
         <a href="{{ route('societe.create')}}" class="btn btn-default add-btn">New</a> 
-        <div class="bloc-form-search w-100">
+        <div class="bloc-form-search">
             {{Form::open(['route' => ['searchsociete']])}}
-                <input name="search" class="form-control" type="text" placeholder="search :" />
+                <input name="search" class="form-control" type="text" placeholder="search..." />
                 <button type="submit" class="btn btn-default"> <i class="fa fa-1x fa-search"></i></button>
             {{ Form::close() }}
         </div>

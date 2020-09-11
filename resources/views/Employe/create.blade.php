@@ -1,50 +1,63 @@
 @extends('layout.back')
 
 @section('content')
-<div class="row">
- <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-7">Ajouter Employe</h1>
-  <div>
-    @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-      </div><br />
-    @endif
+<div class="content-page-form">
+  <div class="row justify-content-center">
+    <div class="col-sm-7">
+      <h1 class="titre-page-form">Ajouter Employe</h1>
+      <div class="bloc-formulaire-page">
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+          </div>
+          <br />
+        @endif
         {{Form::open(['route' => 'employe.store'])}}
           @csrf
-          <div class="form-group">    
-              <label for="name">Nom :</label>
+          <div class="form-group row align-items-center">
+            <label class="col-sm-5 col-form-label">Nom :</label>
+            <div class="col-sm-7 text-right">  
               <input type="text" class="form-control" name="name"/>
-          </div>  
-          <div class="form-group">    
-              <label for="cin">CIN :</label>
+            </div> 
+          </div>
+          <div class="form-group row align-items-center">
+            <label class="col-sm-5 col-form-label">CIN :</label>
+            <div class="col-sm-7 text-right">  
               <input type="text" class="form-control" name="cin"/>
-          </div>  
-          <div class="form-group">    
-              <label for="status">Status :</label>
-                <select class="form-control" name="status">
-                    <option value="1">Activer</option>
-                    <option value="0">Desactiver</option>
-                </select>
-          </div>  
+            </div> 
+          </div>
+          <div class="form-group row align-items-center">
+            <label class="col-sm-5 col-form-label">Status :</label>
+            <div class="col-sm-7 text-right">  
+              <select class="form-control" name="status">
+                <option value="1">Activer</option>
+                <option value="0">Desactiver</option>
+              </select>
+            </div> 
+          </div>
           @if(isset($societes))
-          <div class="form-group">    
-                <label for="name">Societe :</label>
-                <select class="form-control" name="idSociete">
-                    <option value="">--------------</option>
-                    @foreach($societes as $societe)
-                        <option value="{{$societe->id}}">{{$societe->name}}</option>
-                    @endforeach
-                </select>
-          </div>       
-          @endif                        
-          <button type="submit" class="btn btn-primary-outline">Ajouter</button>
-          {{ Form::close() }}
+          <div class="form-group row align-items-center">
+            <label class="col-sm-5 col-form-label">Societe :</label>
+            <div class="col-sm-7 text-right">  
+              <select class="form-control" name="idSociete">
+                <option value="">--------------</option>
+                @foreach($societes as $societe)
+                <option value="{{$societe->id}}">{{$societe->name}}</option>
+                @endforeach
+              </select>
+            </div> 
+          </div>    
+          @endif    
+          <div class="bloc-btn-page-form">
+            <button type="submit" class="btn btn-default">Ajouter</button>
+          </div>
+        {{ Form::close() }}
+      </div>
+    </div>
   </div>
-</div>
 </div>
 @endsection
