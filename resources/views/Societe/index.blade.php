@@ -27,9 +27,9 @@
                     <form action="{{ route('societe.destroy', $societe->id)}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <a href="{{ route('societe.edit',$societe->id)}}" class="btn btn-primary">Edit</a>
-                    <a href="{{ route('addemployes',$societe->id)}}" class="btn btn-primary">Ajouter Employes</a>
-                    <button class="btn btn-danger" type="submit">Delete</button>
+                    <a href="{{ route('societe.edit',$societe->id)}}" class="btn btn-default">Edit</a>
+                    <a href="{{ route('addemployes',$societe->id)}}" class="btn btn-default">Ajouter Employes</a>
+                    <button class="btn btn-default btn-supp" type="submit">Delete</button>
                     </form>
                 </td>
             </tr>

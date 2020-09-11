@@ -120,26 +120,6 @@ input[type="reset"]:active {
     transform: scale(0.95);
 }
 
-input[type="text"] {
-    background-color: #f6f6f6;
-    border: none;
-    color: #0d0d0d;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    width: 85%;
-    border: 2px solid #f6f6f6;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-}
 
 input[type="text"]:focus {
     background-color: #fff;
@@ -313,13 +293,19 @@ input[type="password"]:placeholder {
     width: 60%;
 }
 
-
+.form-control{
+    height: 47px;
+    background-color: #f3f4f7;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    margin: 0;
+}
 .bloc-formulaire-login .form-control {
     margin: 0;
     margin-bottom: 20px;
     height: 47px;
-    background-color: #f3f4f7 !important;
-    border: 1px solid #F2F2F2;
+    background-color: #f3f4f7;
+    border: 1px solid #e6e6e6;
     border-radius: 4px;
 }
 .bloc-formulaire-login .form-control:focus {
@@ -470,6 +456,8 @@ input[type="password"]:placeholder {
 }
 .header-top-search .bloc-form-search form{
     margin-bottom: 0;
+    display: flex;
+    align-items: center;
 }
 .header-top-search .bloc-form-search .form-control{
     margin: 0;
@@ -481,4 +469,61 @@ input[type="password"]:placeholder {
 }
 .header-top-search .bloc-form-search .btn-default{
     float: left;
+}
+.table-defaults thead td{
+    font-weight: 600;
+}
+.table-defaults tbody tr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.table-defaults tbody td {
+    border: 0;
+}
+.table-defaults form{
+    margin-bottom: 0;
+}
+.table-defaults form .btn-default{
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 22px;
+}
+.table-defaults form .btn-supp{
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+}
+.table-defaults form .btn-supp:hover{
+    background-color: transparent;
+    color: #dc3545;
+}
+.content-page-form {
+    padding: 60px 0;
+}
+.bloc-formulaire-page{
+    padding-top: 30px;
+}
+.content-page-form .titre-page-form{
+    text-align: center;
+    font-weight: 600;
+    color: #1f8ced;
+    font-size: 35px;
+    margin-bottom: 40px;
+}
+.custom-file{
+    width: auto;
+    text-align: left;
+    border: 1px solid #F2F2F2;
+    height: 47px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 15px;
+}
+.bloc-btn-page-form{
+    text-align: right;
+    padding: 30px 0;
+}
+.bloc-btn-page-form .btn-default{
+    text-align: center;
 }
