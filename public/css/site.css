@@ -439,15 +439,12 @@ input[type="password"]:placeholder {
     background: transparent;
     color: #1f8ced;
 }
-.header-top-search {
-    margin-bottom: 50px;
-}
-.header-top-search .add-btn{
+.add-btn{
     background-color: #00B0A5;
     border: 1px solid #00B0A5;
     margin-right: 20px;
 }
-.header-top-search .add-btn:hover{
+.add-btn:hover{
     color: #00B0A5;
     background-color: transparent;
 }
@@ -470,19 +467,18 @@ input[type="password"]:placeholder {
 .header-top-search .bloc-form-search .btn-default{
     float: left;
 }
+.table-defaults{
+    margin-top: 50px;}
 .table-defaults thead td{
     font-weight: 600;
 }
-.table-defaults tbody tr {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 .table-defaults tbody td {
     border: 0;
+    vertical-align: middle;
 }
 .table-defaults form{
     margin-bottom: 0;
+    text-align: right;
 }
 .table-defaults form .btn-default{
     height: 34px;
