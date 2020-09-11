@@ -20,10 +20,10 @@ class EmployeController extends Controller
     public function index()
     {
         if (Auth::user()->super==0) {
-            $employes = Employe::where('idSociete',Auth::user()->idSociete)->paginate(10);
+            $employes = Employe::where('idSociete',Auth::user()->idSociete)->paginate(1);
         }
         else{
-            $employes = Employe::paginate(10);
+            $employes = Employe::paginate(1);
         }
 
         return View('employe.index',compact('employes'));

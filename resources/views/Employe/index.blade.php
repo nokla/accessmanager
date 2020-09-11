@@ -42,8 +42,8 @@
             @endforeach
         </tbody>
     </table>
-        {!! $employes->links() !!}
     <div class="d-flex justify-content-center">
+        {{ $employes->links() }}
     </div>
 <div>
 
