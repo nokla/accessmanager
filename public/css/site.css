@@ -1,4 +1,8 @@
 /* BASIC */
+*{
+    box-sizing: border-box;
+    outline: none;
+}
 
 html {
     background-color: #56baed;
@@ -35,14 +39,14 @@ h2 {
     justify-content: center;
     width: 100%;
     min-height: 100%;
-    padding: 20px;
+    margin: 0
 }
 
 #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     background: #fff;
-    padding: 30px;
+    padding: 30px !important;
     width: 90%;
     max-width: 450px;
     position: relative;
@@ -51,7 +55,9 @@ h2 {
     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
     text-align: center;
 }
-
+#formContent form{
+    margin-bottom: 0;
+}
 #formFooter {
     background-color: #f6f6f6;
     border-top: 1px solid #dce8f1;
@@ -305,4 +311,169 @@ input[type="password"]:placeholder {
 
 #icon {
     width: 60%;
+}
+
+
+.bloc-formulaire-login .form-control {
+    margin: 0;
+    margin-bottom: 20px;
+    height: 47px;
+    background-color: #f3f4f7 !important;
+    border: 1px solid #F2F2F2;
+    border-radius: 4px;
+}
+.bloc-formulaire-login .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+.bloc-formulaire-login .btn-login{
+    background-color: #1f8ced;
+    border: 1px solid #1f8ced;
+    height: 46px;
+    padding: 6px 30px;
+    color: #fff;
+    font-size: 17px;
+    letter-spacing: .5px;
+    border-radius: 0;
+    -webkit-transition: .5s all;
+    -o-transition: .5s all;
+    transition: .5s all;
+    min-width: 200px;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+.bloc-formulaire-login .btn-login:hover{
+    background-color: transparent;
+    color: #1f8ced;
+}
+.navbar{
+    background-color: #1f8ced;
+}
+.navbar .nav-link {
+    color: #fff !important;
+    text-transform: capitalize;
+    -webkit-transition: .5s all;
+    -o-transition: .5s all;
+    transition: .5s all;
+}
+.navbar .nav-link:hover {
+    color: #000 !important;
+}
+.navbar .navbar-brand{
+    text-transform: uppercase;
+    color: #fff;
+    -webkit-transition: .5s all;
+    -o-transition: .5s all;
+    transition: .5s all;
+}
+.item-dashbord a{
+    text-decoration: none;
+    display: block;
+    color: #fff;
+    background-color: #1f8ced;
+    border: 1px solid #1f8ced;
+    -webkit-transition: .5s all;
+    -o-transition: .5s all;
+    transition: .5s all;
+    padding: 40px 20px;
+}
+.item-dashbord .card-img-top {
+    margin-bottom: 20px;
+    -webkit-transition: .5s all;
+    -o-transition: .5s all;
+    transition: .5s all;
+}
+.item-dashbord .card-body{
+    padding: 0;
+}
+.item-dashbord .card-title{
+    padding: 0;
+    -webkit-transition: .5s all;
+    -o-transition: .5s all;
+    transition: .5s all;
+    margin-bottom: 0;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: .6px;
+}
+.item-dashbord a:hover{
+    background-color: transparent;
+}
+.item-dashbord a:hover{
+    background-color: transparent;
+}
+.item-dashbord a:hover .card-img-top {
+    color: #1f8ced;
+}
+.item-dashbord a:hover .card-title {
+    color: #000;
+}
+
+.titre-page-default{
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #1f8ced;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+}
+.titre-page-default:before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 6px;
+    width: 50px;
+    background-color: #1f8ced;
+}
+.btn-default{
+    background-color: #1f8ced;
+    border: 1px solid #1f8ced;
+    height: 46px;
+    padding: 6px 30px;
+    color: #fff;
+    font-size: 17px;
+    line-height: 32px;
+    letter-spacing: .5px;
+    border-radius: 0;
+    -webkit-transition: .5s all;
+    -o-transition: .5s all;
+    transition: .5s all;
+}
+.btn-default:hover{
+    background: transparent;
+    color: #1f8ced;
+}
+.header-top-search {
+    margin-bottom: 50px;
+}
+.header-top-search .add-btn{
+    background-color: #00B0A5;
+    border: 1px solid #00B0A5;
+    margin-right: 20px;
+}
+.header-top-search .add-btn:hover{
+    color: #00B0A5;
+    background-color: transparent;
+}
+.header-top-search .bloc-form-search{
+    margin-bottom: 0;
+}
+.header-top-search .bloc-form-search form{
+    margin-bottom: 0;
+}
+.header-top-search .bloc-form-search .form-control{
+    margin: 0;
+    height: 46px;
+    border-radius: 0;
+    margin: 0;
+    float: left;
+    border: 0;
+}
+.header-top-search .bloc-form-search .btn-default{
+    float: left;
 }

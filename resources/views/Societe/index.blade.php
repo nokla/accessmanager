@@ -2,13 +2,17 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="display-7">Societe</h1>   
-    <a style="margin: 19px;" href="{{ route('societe.create')}}" class="btn btn-primary">New</a> 
-    {{Form::open(['route' => ['searchsociete']])}}
-        <input name="search" type="text" placeholder="search :" />
-          <button type="submit" class="btn btn-primary-outline"> <i class="fa fa-1x fa-search"></i></button>
-    {{ Form::close() }}
-    <table class="table table-striped">
+    <h1 class="titre-page-default">Societe</h1>   
+    <div class="d-flex align-items-center header-top-search">
+        <a href="{{ route('societe.create')}}" class="btn btn-default add-btn">New</a> 
+        <div class="bloc-form-search w-100">
+            {{Form::open(['route' => ['searchsociete']])}}
+                <input name="search" class="form-control" type="text" placeholder="search :" />
+                <button type="submit" class="btn btn-default"> <i class="fa fa-1x fa-search"></i></button>
+            {{ Form::close() }}
+        </div>
+    </div>
+    <table class="table table-striped table-defaults">
         <thead>
             <tr>
                 <td>Nom</td>

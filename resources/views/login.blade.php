@@ -10,13 +10,13 @@
 </head>
 <body>
     <div class="wrapper fadeInDown">
-        <div id="formContent">
+        <div id="formContent" class="bloc-formulaire-login">
             <!-- Tabs Titles -->
             <!-- Login Form -->
             {{Form::open(['route' => 'postLogin', 'method' => 'post'])}}
-            <input type="text" id="email" class="fadeIn second" name="email" placeholder="login">
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
+            <input type="text" id="email" class="fadeIn second form-control" name="email" placeholder="login">
+            <input type="password" id="password" class="fadeIn third form-control" name="password" placeholder="password">
+            <input type="submit" class="fadeIn fourth btn-login" value="Log In">
             {{ Form::close() }}
             <!-- Remind Passowrd -->
             <div id="formFooter">
