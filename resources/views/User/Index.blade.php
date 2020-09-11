@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-5">
     <h1 class="titre-page-default">Utilisateurs</h1>   
-    <a href="{{ route('user.create')}}" class="btn btn-default add-btn">New</a> 
+    <a href="{{ route('user.create')}}" class="btn btn-default add-btn top-btn-add">New</a> 
     <table class="table table-striped table-defaults">
         <thead>
             <tr>
@@ -23,8 +23,8 @@
                     <form action="{{ route('user.destroy', $user->id)}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <a href="{{ route('user.edit',$user->id)}}" class="btn btn-default">Edit</a>
-                    <button class="btn btn-default btn-supp" type="submit">Delete</button>
+                    <a href="{{ route('user.edit',$user->id)}}" class="btn btn-default"><i class="fas fa-pen"></i></a>
+                    <button class="btn btn-default btn-supp" type="submit"><i class="far fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>
@@ -32,7 +32,7 @@
         </tbody>
     </table>
         {!! $users->links() !!}
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-end">
     </div>
 <div>
 

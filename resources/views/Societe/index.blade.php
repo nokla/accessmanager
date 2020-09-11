@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <h1 class="titre-page-default">Societe</h1>   
     <div class="d-flex align-items-center header-top-search">
-        <a href="{{ route('societe.create')}}" class="btn btn-default add-btn">New</a> 
+        <a href="{{ route('societe.create')}}" class="btn btn-default top-btn-add add-btn">New</a> 
         <div class="bloc-form-search">
             {{Form::open(['route' => ['searchsociete']])}}
                 <input name="search" class="form-control" type="text" placeholder="search..." />
@@ -27,16 +27,16 @@
                     <form action="{{ route('societe.destroy', $societe->id)}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <a href="{{ route('societe.edit',$societe->id)}}" class="btn btn-default">Edit</a>
-                    <a href="{{ route('addemployes',$societe->id)}}" class="btn btn-default">Ajouter Employes</a>
-                    <button class="btn btn-default btn-supp" type="submit">Delete</button>
+                    <a href="{{ route('societe.edit',$societe->id)}}" class="btn btn-default"><i class="fas fa-pen"></i></a>
+                    <a href="{{ route('addemployes',$societe->id)}}" class="btn btn-default add-btn" title="Ajouter Employes"><i class="fas fa-plus"></i></a>
+                    <button class="btn btn-default btn-supp" type="submit"><i class="far fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-end">
         {!! $societes->links() !!}
     </div>
 <div>

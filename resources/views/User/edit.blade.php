@@ -36,7 +36,7 @@
           </div>
           <div class="form-group row align-items-center">
             <label class="col-sm-5 col-form-label">Societe :</label>
-            <div class="col-sm-7 text-right">  
+            <div class="col-sm-7 text-right select-bloc">  
               <select name="idSociete" value="" class="form-control">
                 <option value="">--------------</option>
                 @foreach($societes as $societe)

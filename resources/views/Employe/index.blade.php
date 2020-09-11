@@ -16,7 +16,7 @@
         <thead>
             <tr>
                 <td>Name</td>
-                <td>Cin</td>
+                <td>CIN</td>
                 <td>Status</td>
                 <td>Societe</td>
                 <td></td>
@@ -37,16 +37,16 @@
                 <td>{{$employe->Societe->name}}</td>
                 <td>
                     {{Form::open(['method'=>'delete','route' => ['employe.destroy',$employe->id]])}}
-                    <a href="{{ route('employe.edit',$employe->id)}}" class="btn btn-default">Edit</a>
-                    <a href="{{ route('employe.show',$employe->id)}}" class="btn btn-default">Detail</a>
-                    <button class="btn btn-default btn-supp" type="submit">Delete</button>
+                    <a href="{{ route('employe.edit',$employe->id)}}" class="btn btn-default"><i class="fas fa-pen"></i></a>
+                    <a href="{{ route('employe.show',$employe->id)}}" class="btn btn-default" title="Detail"><i class="far fa-eye"></i></a>
+                    <button class="btn btn-default btn-supp" type="submit"><i class="far fa-trash-alt"></i></button>
                     {{ Form::close() }}
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-end">
         {{ $employes->links() }}
     </div>
 <div>

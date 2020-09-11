@@ -32,7 +32,7 @@
           </div>
           <div class="form-group row align-items-center">
             <label class="col-sm-5 col-form-label">Status :</label>
-            <div class="col-sm-7 text-right">  
+            <div class="col-sm-7 text-right select-bloc">  
               <select class="form-control" name="status">
                 <option value="1">Activer</option>
                 <option value="0">Desactiver</option>
@@ -42,7 +42,7 @@
           @if(isset($societes))
           <div class="form-group row align-items-center">
             <label class="col-sm-5 col-form-label">Societe :</label>
-            <div class="col-sm-7 text-right">  
+            <div class="col-sm-7 text-right select-bloc">  
               <select class="form-control" name="idSociete">
                 <option value="">--------------</option>
                 @foreach($societes as $societe)

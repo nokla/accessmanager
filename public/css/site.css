@@ -4,9 +4,7 @@
     outline: none;
 }
 
-html {
-    background-color: #56baed;
-}
+
 
 body {
     font-family: "Poppins", sans-serif;
@@ -41,12 +39,15 @@ h2 {
     min-height: 100%;
     margin: 0
 }
+.login-page {
+    background-color: #1f8ced;
+}
 
 #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     background: #fff;
-    padding: 30px !important;
+    padding: 50px  !important;
     width: 90%;
     max-width: 450px;
     position: relative;
@@ -130,26 +131,6 @@ input[type="text"]:placeholder {
     color: #cccccc;
 }
 
-input[type="password"] {
-    background-color: #f6f6f6;
-    border: none;
-    color: #0d0d0d;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    width: 85%;
-    border: 2px solid #f6f6f6;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-}
 
 input[type="password"]:focus {
     background-color: #fff;
@@ -297,8 +278,9 @@ input[type="password"]:placeholder {
     height: 47px;
     background-color: #f3f4f7;
     border: 1px solid #e6e6e6;
-    border-radius: 4px;
+    border-radius: 50px;
     margin: 0;
+    padding: 6px 30px;
 }
 .bloc-formulaire-login .form-control {
     margin: 0;
@@ -306,7 +288,8 @@ input[type="password"]:placeholder {
     height: 47px;
     background-color: #f3f4f7;
     border: 1px solid #e6e6e6;
-    border-radius: 4px;
+    border-radius: 50px;
+    text-align: center;
 }
 .bloc-formulaire-login .form-control:focus {
     color: #495057;
@@ -323,7 +306,7 @@ input[type="password"]:placeholder {
     color: #fff;
     font-size: 17px;
     letter-spacing: .5px;
-    border-radius: 0;
+    border-radius: 50px;
     -webkit-transition: .5s all;
     -o-transition: .5s all;
     transition: .5s all;
@@ -422,6 +405,8 @@ input[type="password"]:placeholder {
     background-color: #1f8ced;
 }
 .btn-default{
+    display: inline-flex;
+    align-items: center;
     background-color: #1f8ced;
     border: 1px solid #1f8ced;
     height: 46px;
@@ -430,7 +415,7 @@ input[type="password"]:placeholder {
     font-size: 17px;
     line-height: 32px;
     letter-spacing: .5px;
-    border-radius: 0;
+    border-radius: 50px;
     -webkit-transition: .5s all;
     -o-transition: .5s all;
     transition: .5s all;
@@ -442,7 +427,6 @@ input[type="password"]:placeholder {
 .add-btn{
     background-color: #00B0A5;
     border: 1px solid #00B0A5;
-    margin-right: 20px;
 }
 .add-btn:hover{
     color: #00B0A5;
@@ -462,16 +446,21 @@ input[type="password"]:placeholder {
 .header-top-search .bloc-form-search .form-control{
     margin: 0;
     height: 46px;
-    border-radius: 0;
     margin: 0;
     float: left;
     border: 0;
 }
 .header-top-search .bloc-form-search .btn-default{
-    float: left;
+    margin-left: 10px;
+}
+.header-top-search .btn-default, .top-btn-add{
+    border-radius: 50px;
 }
 .table-defaults{
-    margin-top: 50px;}
+    margin-top: 50px;
+    border-radius: 50px;
+    margin-left: 10px;
+}
 .table-defaults thead td{
     font-weight: 600;
 }
@@ -485,9 +474,12 @@ input[type="password"]:placeholder {
 }
 .table-defaults form .btn-default{
     height: 34px;
-    padding: 6px 12px;
+    width: 34px;
+    padding: 6px 5px;
     font-size: 14px;
     line-height: 22px;
+    border-radius: 50%;
+    justify-content: center;
 }
 .table-defaults form .btn-supp{
     background-color: #dc3545;
@@ -525,4 +517,19 @@ input[type="password"]:placeholder {
 }
 .bloc-btn-page-form .btn-default{
     text-align: center;
+}
+.select-bloc select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+}
+.select-bloc::before{
+    content: "\f107";
+    position: absolute;
+    top: 12px;
+    right: 40px;
+    z-index: 1;
+    pointer-events: none;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
 }
