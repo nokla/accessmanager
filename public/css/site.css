@@ -354,8 +354,20 @@ input[type="password"]:placeholder {
     transition: .5s all;
     padding: 40px 20px;
 }
-.item-dashbord .card-img-top {
+
+.item-dashbord .bloc-img-item-dash {
     margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+.item-dashbord .img-item-hover {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+}
+.item-dashbord img {
+    height: 90px;
+    display: inline-block;
     -webkit-transition: .5s all;
     -o-transition: .5s all;
     transition: .5s all;
@@ -380,8 +392,11 @@ input[type="password"]:placeholder {
 .item-dashbord a:hover{
     background-color: transparent;
 }
-.item-dashbord a:hover .card-img-top {
-    color: #1f8ced;
+.item-dashbord a:hover .img-item-hover {
+    opacity: 1;
+}
+.item-dashbord a:hover .img-item-def {
+    opacity: 0;
 }
 .item-dashbord a:hover .card-title {
     color: #000;

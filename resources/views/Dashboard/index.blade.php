@@ -9,7 +9,10 @@
                         <div class="col-4 item-dashbord">
                             <div class="card text-center">
                                 <a href="{{ route('societe.index')}}">
-                                    <i class="card-img-top far fa-building fa-3x"></i>
+                                    <div class="bloc-img-item-dash">
+                                        <img class="img-item-def" src="/images/icon-societe.svg" />
+                                        <img class="img-item-hover" src="/images/icon-societe-bleu.svg" />
+                                    </div>
                                     <div class="card-body">
                                         <h5 class="card-title"> Societes </h5>
                                     </div>
@@ -19,7 +22,10 @@
                         <div class="col-4 item-dashbord">
                             <div class="card text-center">
                                 <a href="{{ route('user.index')}}">
-                                    <i class="card-img-top fas fa-users fa-3x"></i>
+                                    <div class="bloc-img-item-dash">
+                                        <img class="img-item-def" src="/images/icon-utilisateurs.svg" />
+                                        <img class="img-item-hover" src="/images/icon-utilisateurs-bleu.svg" />
+                                    </div>
                                     <div class="card-body">
                                         <h5 class="card-title">Utilisateurs </h5>
                                     </div>
@@ -30,7 +36,10 @@
                     <div class="col-4 item-dashbord">
                         <div class="card text-center">
                             <a href="{{ route('employe.index')}}">
-                                <i class="card-img-top fas fa-user-tag fa-3x"></i>
+                                <div class="bloc-img-item-dash">
+                                    <img class="img-item-def" src="/images/icon-personels.svg" />
+                                    <img class="img-item-hover" src="/images/icon-personels-bleu.svg" />
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title">Personels </h5>
                                 </div>
