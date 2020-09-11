@@ -4,6 +4,10 @@
 <div class="container mt-5">
     <h1 class="display-7">Personels</h1>   
     <a style="margin: 19px;" href="{{ route('employe.create')}}" class="btn btn-primary">New</a> 
+    {{Form::open(['route' => ['searchemploye']])}}
+        <input name="search" type="text" placeholder="search :" />
+          <button type="submit" class="btn btn-primary-outline"> <i class="fa fa-1x fa-search"></i></button>
+    {{ Form::close() }}
     <table class="table table-striped">
         <thead>
             <tr>

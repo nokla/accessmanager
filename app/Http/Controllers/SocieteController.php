@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Societe;
+use App\Models\Employe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Redirect;
+use File;
 
 class SocieteController extends Controller
 {
@@ -16,7 +19,13 @@ class SocieteController extends Controller
      */
     public function index()
     {
-        $societes = Societe::paginate(8);
+        $societes = Societe::paginate(2);
+        return View('societe.index',compact('societes'));
+    }
+
+    public function SearchSociete(Request $request){
+        $text = $request->input('search');
+        $societes = Societe::where('name','LIKE', '%'.$text.'%')->paginate(8);
         return View('societe.index',compact('societes'));
     }
 
@@ -99,5 +108,37 @@ class SocieteController extends Controller
     {
         $societe->delete();
         return Redirect::route('societe.index');
+    }
+
+    public function AddEmployes($id){
+        return View('Societe.employes',compact('id'));
+    }
+
+    public function PostAddEmployes(Request $request){
+        $file = $request->file('FileEmployes');
+        $idSociete = $request->input('idSociete');
+
+        $tempPath = $file->path();
+        $fileReader = fopen($tempPath,'r');
+
+        while ($line = fgets($fileReader)) {
+            $employe = new Employe;
+            $lineParts = explode(';',$line);
+            $employe->name = $lineParts[2];
+            $employe->cin = $lineParts[3];
+            $filename = 'qrcodes/'.$lineParts[3].'_'.strtotime(date("Y-m-d H:i:s")).'.png';
+            \QrCode::size(200)->format('png')->generate($lineParts[3], base_path('public/'.$filename));
+            $employe->qrcode=$filename;
+            $employe->idSociete = $idSociete;
+            $employe->status = 1;
+            try {
+                $employe->save();
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+        }
+        fclose($fileReader);
+
+        return Redirect::back();
     }
 }

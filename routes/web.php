@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SocieteController;
+use App\Http\Controllers\EmployeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +17,22 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::route('dashboard');
 });
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {
-        return view('dashboard.index');
+        return view('Dashboard.index');
     })->name('dashboard');
+
     route::resource('societe','App\Http\Controllers\SocieteController');
+    route::get('addemployes/{id}',[SocieteController::class,'AddEmployes'])->name('addemployes');
+    route::post('societeemploye',[SocieteController::class,'PostAddEmployes'])->name('postaddemployes');
+    route::post('SearchSociete',[SocieteController::class,'SearchSociete'])->name('searchsociete');
     route::resource('user','App\Http\Controllers\UserController');
+
     route::resource('employe','App\Http\Controllers\EmployeController');
+    route::post('SearchEmploye',[EmployeController::class,'SearchEmploye'])->name('searchemploye');
 });
 
 Route::post('login', [LoginController::class,'login'] )->name('postLogin');

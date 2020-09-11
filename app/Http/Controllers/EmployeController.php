@@ -29,6 +29,13 @@ class EmployeController extends Controller
         return View('employe.index',compact('employes'));
     }
 
+    public function SearchEmploye(Request $request){
+        $text = $request->input('search');
+        $employes = Employe::where('name','LIKE', '%'.$text.'%')
+        ->orWhere('CIN','LIKE', '%'.$text.'%')
+        ->paginate(8);
+        return View('employe.index',compact('employes'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -150,5 +157,20 @@ class EmployeController extends Controller
     {
         Employe::find($id)->delete();
         return Redirect::route('employe.index');
+    }
+
+    public function getEmploye(string $cin){
+        $user = Employe::where('CIN',$cin)->first();
+        $return = [
+            'name'=>$user->name,
+             'cin'=>$user->CIN,
+             'status'=>$user->status,
+             'qrcode'=>$user->qrcode,
+             'Societe'=>$user->Societe->name
+        ];
+        if (!$user) {
+            return '';
+        }
+        return response()->json($return);
     }
 }
