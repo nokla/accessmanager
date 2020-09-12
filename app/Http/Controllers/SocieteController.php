@@ -53,7 +53,7 @@ class SocieteController extends Controller
             $societe = new Societe;
             $societe->name = $oInputs['name'];
             $societe->save();
-            return Redirect::route('Societe.index');
+            return Redirect::route('societe.index');
         }
         return Redirect::back();
     }
@@ -93,7 +93,7 @@ class SocieteController extends Controller
         $validation = Validator::make($oInputs,Societe::$rules);
         if ($validation->passes()) {
             $societe->update($oInputs);
-            return Redirect::route('Societe.index');
+            return Redirect::route('societe.index');
         }
         return Redirect::back();
     }
@@ -107,7 +107,7 @@ class SocieteController extends Controller
     public function destroy(Societe $societe)
     {
         $societe->delete();
-        return Redirect::route('Societe.index');
+        return Redirect::route('societe.index');
     }
 
     public function AddEmployes($id){

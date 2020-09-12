@@ -51,7 +51,7 @@ class UserController extends Controller
             $user->password = Hash::make($oInputs['password']);
             $user->idSociete = $oInputs['idSociete'];
             $user->save();
-            return Redirect::route('User.index');
+            return Redirect::route('user.index');
         }
         return Redirect::back();
     }
