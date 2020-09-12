@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <div class="col-sm-7">
       <h1 class="titre-page-form">Employe</h1>
-      <div>
+      <div class="bloc-formulaire-page">
         @if ($errors->any())
           <div class="alert alert-danger">
             <ul>
