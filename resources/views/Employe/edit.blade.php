@@ -33,6 +33,7 @@
             <label class="col-sm-5 col-form-label">Status :</label>
             <div class="col-sm-7 text-right select-bloc">  
               <select class="form-control" name="status">
+                <option value="">--------------</option>
                 <option value="1">Activer</option>
                 <option value="0">Desactiver</option>
               </select>

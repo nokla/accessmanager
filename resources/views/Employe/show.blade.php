@@ -31,7 +31,7 @@
           <div class="form-group row align-items-center">
             <label class="col-sm-5 col-form-label">Status :</label>
             <div class="col-sm-7 text-right">  
-              <input type="text" class="form-control" value="{{$employe->status === 1 ? 'Active' : 'Desactiver' }}" disabled name="status"/>
+              <input type="text" class="form-control" value="{{$employe->status == 1 ? 'Active' : 'Desactiver' }}" disabled name="status"/>
             </div> 
           </div>
           <div class="form-group row align-items-center">

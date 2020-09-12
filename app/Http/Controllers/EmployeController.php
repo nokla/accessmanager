@@ -78,7 +78,7 @@ class EmployeController extends Controller
                 $employe->idSociete = Auth::user()->idSociete;
             }
             $employe->save();
-            return Redirect::route('Employe.index');
+            return Redirect::route('employe.index');
         }
         return Redirect::back();
     }
@@ -142,7 +142,7 @@ class EmployeController extends Controller
                 $employe->idSociete = $oInputs['idSociete'];
             }
             $employe->update();
-            return Redirect::route('Employe.index');
+            return Redirect::route('employe.index');
         }
         return Redirect::back();
     }
@@ -156,7 +156,7 @@ class EmployeController extends Controller
     public function destroy($id)
     {
         Employe::find($id)->delete();
-        return Redirect::route('Employe.index');
+        return Redirect::route('employe.index');
     }
 
     public function getEmploye(string $cin){
