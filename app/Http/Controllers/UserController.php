@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('super',0)->paginate(8);
-        return View('user.index',compact('users'));
+        return View('User.Index',compact('users'));
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends Controller
     public function create()
     {
         $societes = Societe::all();
-        return View('user.create',compact('societes'));
+        return View('User.create',compact('societes'));
     }
 
     /**
@@ -51,7 +51,7 @@ class UserController extends Controller
             $user->password = Hash::make($oInputs['password']);
             $user->idSociete = $oInputs['idSociete'];
             $user->save();
-            return Redirect::route('user.index');
+            return Redirect::route('User.index');
         }
         return Redirect::back();
     }
@@ -76,7 +76,7 @@ class UserController extends Controller
     public function edit(Societe $user)
     {
         $societes = Societe::all();
-        return View('user.edit',compact('user','societes'));
+        return View('User.edit',compact('user','societes'));
     }
 
     /**

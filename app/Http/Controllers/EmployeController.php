@@ -20,13 +20,13 @@ class EmployeController extends Controller
     public function index()
     {
         if (Auth::user()->super==0) {
-            $employes = Employe::where('idSociete',Auth::user()->idSociete)->paginate(1);
+            $employes = Employe::where('idSociete',Auth::user()->idSociete)->paginate(10);
         }
         else{
-            $employes = Employe::paginate(1);
+            $employes = Employe::paginate(10);
         }
 
-        return View('employe.index',compact('employes'));
+        return View('Employe.index',compact('employes'));
     }
 
     public function SearchEmploye(Request $request){
@@ -34,7 +34,7 @@ class EmployeController extends Controller
         $employes = Employe::where('name','LIKE', '%'.$text.'%')
         ->orWhere('CIN','LIKE', '%'.$text.'%')
         ->paginate(8);
-        return View('employe.index',compact('employes'));
+        return View('Employe.index',compact('employes'));
     }
     /**
      * Show the form for creating a new resource.
@@ -48,7 +48,7 @@ class EmployeController extends Controller
             $societes = Societe::all();
         }
         // dd($societes);
-        return View('employe.create',compact('societes'));
+        return View('Employe.create',compact('societes'));
     }
 
     /**
@@ -78,7 +78,7 @@ class EmployeController extends Controller
                 $employe->idSociete = Auth::user()->idSociete;
             }
             $employe->save();
-            return Redirect::route('employe.index');
+            return Redirect::route('Employe.index');
         }
         return Redirect::back();
     }
@@ -93,7 +93,7 @@ class EmployeController extends Controller
     {
         $employe = Employe::find($id);
 
-        return View('employe.show',compact('employe'));
+        return View('Employe.show',compact('employe'));
     }
 
     /**
@@ -109,7 +109,7 @@ class EmployeController extends Controller
         if(Auth::user()->super==1){
             $societes = Societe::all();
         }
-        return View('employe.edit',compact('employe','societes'));
+        return View('Employe.edit',compact('employe','societes'));
     }
 
     /**
@@ -142,7 +142,7 @@ class EmployeController extends Controller
                 $employe->idSociete = $oInputs['idSociete'];
             }
             $employe->update();
-            return Redirect::route('employe.index');
+            return Redirect::route('Employe.index');
         }
         return Redirect::back();
     }
@@ -156,7 +156,7 @@ class EmployeController extends Controller
     public function destroy($id)
     {
         Employe::find($id)->delete();
-        return Redirect::route('employe.index');
+        return Redirect::route('Employe.index');
     }
 
     public function getEmploye(string $cin){

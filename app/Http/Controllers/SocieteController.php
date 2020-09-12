@@ -19,14 +19,14 @@ class SocieteController extends Controller
      */
     public function index()
     {
-        $societes = Societe::paginate(2);
-        return View('societe.index',compact('societes'));
+        $societes = Societe::paginate(10);
+        return View('Societe.index',compact('societes'));
     }
 
     public function SearchSociete(Request $request){
         $text = $request->input('search');
         $societes = Societe::where('name','LIKE', '%'.$text.'%')->paginate(8);
-        return View('societe.index',compact('societes'));
+        return View('Societe.index',compact('societes'));
     }
 
     /**
@@ -36,7 +36,7 @@ class SocieteController extends Controller
      */
     public function create()
     {
-        return View('societe.create');
+        return View('Societe.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class SocieteController extends Controller
             $societe = new Societe;
             $societe->name = $oInputs['name'];
             $societe->save();
-            return Redirect::route('societe.index');
+            return Redirect::route('Societe.index');
         }
         return Redirect::back();
     }
@@ -77,7 +77,7 @@ class SocieteController extends Controller
      */
     public function edit(Societe $societe)
     {
-        return View('societe.edit',compact('societe'));
+        return View('Societe.edit',compact('societe'));
     }
 
     /**
@@ -93,7 +93,7 @@ class SocieteController extends Controller
         $validation = Validator::make($oInputs,Societe::$rules);
         if ($validation->passes()) {
             $societe->update($oInputs);
-            return Redirect::route('societe.index');
+            return Redirect::route('Societe.index');
         }
         return Redirect::back();
     }
@@ -107,7 +107,7 @@ class SocieteController extends Controller
     public function destroy(Societe $societe)
     {
         $societe->delete();
-        return Redirect::route('societe.index');
+        return Redirect::route('Societe.index');
     }
 
     public function AddEmployes($id){
