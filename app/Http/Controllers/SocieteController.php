@@ -19,7 +19,7 @@ class SocieteController extends Controller
      */
     public function index()
     {
-        $societes = Societe::paginate(2);
+        $societes = Societe::paginate(10);
         return View('societe.index',compact('societes'));
     }
 
