@@ -7,7 +7,7 @@
         <a href="{{ route('employe.create')}}" class="btn btn-default add-btn">New</a> 
         <div class="bloc-form-search">
         {{Form::open(['route' => ['searchemploye']])}}
-            <input name="search" class="form-control" type="text" placeholder="search..." />
+            <input name="search" class="form-control" type="text" placeholder="Search..." />
             <button type="submit" class="btn btn-default"> <i class="fa fa-1x fa-search"></i></button>
         {{ Form::close() }}
         </div>
