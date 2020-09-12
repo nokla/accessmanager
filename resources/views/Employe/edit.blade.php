@@ -4,7 +4,7 @@
 <div class="content-page-form">
   <div class="row justify-content-center">
     <div class="col-sm-7">
-      <h1 class="display-7">Modifier Employe</h1>
+      <h1 class="titre-page-form">Modifier Employe</h1>
       <div class="bloc-formulaire-page">
         @if ($errors->any())
           <div class="alert alert-danger">

@@ -4,7 +4,7 @@
 <div class="content-page-form">
   <div class="row justify-content-center">
     <div class="col-sm-7">
-      <h1 class="display-7">Employe</h1>
+      <h1 class="titre-page-form">Employe</h1>
       <div>
         @if ($errors->any())
           <div class="alert alert-danger">
@@ -41,13 +41,14 @@
             </div> 
           </div>
           <div class="form-group row align-items-center">
-            
+            <label class="col-sm-5 col-form-label">QrCode :</label>
             <div class="offset-sm-5 col-sm-7 text-right">  
-              <label class="col-sm-5 col-form-label">QrCode :</label>
-              <img src="/{{$employe->qrcode}}" /><br>
-              <a href="/{{$employe->qrcode}}">Telecharger</a>
+              <p><img src="/{{$employe->qrcode}}" /></p>
             </div> 
-          </div>                      
+          </div>  
+          <div class="bloc-btn-page-form">
+            <a href="/{{$employe->qrcode}}" class="btn btn-default"><i class="fas fa-download"></i> Telecharger</a>
+          </div>                   
       </div>
     </div>
   </div>
