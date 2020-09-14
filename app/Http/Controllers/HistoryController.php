@@ -7,6 +7,7 @@ use App\Exports\HistoryExport;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Excel;
+use Auth;
 
 class HistoryController extends Controller
 {
@@ -30,16 +31,16 @@ class HistoryController extends Controller
     {
         $aHistories = History::all();
         $aData[] = ['Nom','CIN','Status','Societe','Date scan'];
-
         foreach ($aHistories as $item ) {
-            $aData[] = [
-                'Nom'=>$item->Employe->name,
-                'CIN'=>$item->Employe->CIN,
-                'Status'=>(($item->Employe->status == 1 ) ? 'Active' : 'Desactiver'),
-                'Societe'=>$item->Employe->Societe->name,
-                'Date'=>$item->dScan
-            ];
-            // dd($item->Employe->status);
+            if( Auth::user()->idSociete == $item->Employe->idSociete){
+                $aData[] = [
+                    'Nom'=>$item->Employe->name,
+                    'CIN'=>$item->Employe->CIN,
+                    'Status'=>(($item->Employe->status == 1 ) ? 'Active' : 'Desactiver'),
+                    'Societe'=>$item->Employe->Societe->name,
+                    'Date'=>$item->dScan
+                ];
+            }
         }
         $export = new HistoryExport($aData);
 
