@@ -29,15 +29,17 @@ class HistoryController extends Controller
     public function print()
     {
         $aHistories = History::all();
-        $aData[] = ['Nom','CIN','Societe','Date scan'];
+        $aData[] = ['Nom','CIN','Status','Societe','Date scan'];
 
         foreach ($aHistories as $item ) {
             $aData[] = [
                 'Nom'=>$item->Employe->name,
                 'CIN'=>$item->Employe->CIN,
+                'Status'=>(($item->Employe->status == 1 ) ? 'Active' : 'Desactiver'),
                 'Societe'=>$item->Employe->Societe->name,
-                'Date'=>$item->dScan,
+                'Date'=>$item->dScan
             ];
+            // dd($item->Employe->status);
         }
         $export = new HistoryExport($aData);
 
