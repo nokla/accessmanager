@@ -30,4 +30,8 @@ class Employe extends Model
     {
         return $this->belongsTo('App\Models\Societe','idSociete');
     }
+
+    public function History(){
+        return $this->hasMany('App\Models\History','idEmploye','id');
+    }
 }

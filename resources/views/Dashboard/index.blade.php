@@ -6,7 +6,7 @@
             <div class="col-md-10">
                 <div class="row justify-content-center">
                     @if(Auth::user()->super==1)
-                        <div class="col-4 item-dashbord">
+                        <div class="col-3 item-dashbord">
                             <div class="card text-center">
                                 <a href="{{ route('societe.index')}}">
                                     <div class="bloc-img-item-dash">
@@ -19,7 +19,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-4 item-dashbord">
+                        <div class="col-3 item-dashbord">
                             <div class="card text-center">
                                 <a href="{{ route('user.index')}}">
                                     <div class="bloc-img-item-dash">
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     @endif
-                    <div class="col-4 item-dashbord">
+                    <div class="col-3 item-dashbord">
                         <div class="card text-center">
                             <a href="{{ route('employe.index')}}">
                                 <div class="bloc-img-item-dash">
@@ -46,45 +46,20 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                <!-- <div class="card">
-                    <div class="card-body">
-                        <form action="" method="">
-                            <div class="form-group row">
-                                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="email_address" class="form-control" name="email-address" required autofocus>
+                    <div class="col-3 item-dashbord">
+                        <div class="card text-center">
+                            <a href="{{ route('history.index')}}">
+                                <div class="bloc-img-item-dash">
+                                    <img class="img-item-def" src="/images/Calendar_white.png" />
+                                    <img class="img-item-hover" src="/images/Calendar_blue.png" />
                                 </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" id="password" class="form-control" name="password" required>
+                                <div class="card-body">
+                                    <h5 class="card-title">History </h5>
                                 </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember"> Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                                <a href="#" class="btn btn-link">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </form>
+                            </a>
+                        </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
