@@ -36,6 +36,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     route::post('SearchEmploye',[EmployeController::class,'SearchEmploye'])->name('searchemploye');
 
     route::get('history',[HistoryController::class,'index'])->name('history.index');
+    route::get('PrinHistory',[HistoryController::class,'print'])->name('PrintHistory');
 });
 
 Route::post('login', [LoginController::class,'login'] )->name('postLogin');

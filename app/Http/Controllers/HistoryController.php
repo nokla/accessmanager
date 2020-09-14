@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\History;
+use App\Exports\HistoryExport;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Excel;
 
 class HistoryController extends Controller
 {
@@ -23,64 +26,22 @@ class HistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function print()
     {
-        //
-    }
+        $aHistories = History::all();
+        $aData[] = ['Nom','CIN','Societe','Date scan'];
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        foreach ($aHistories as $item ) {
+            $aData[] = [
+                'Nom'=>$item->Employe->name,
+                'CIN'=>$item->Employe->CIN,
+                'Societe'=>$item->Employe->Societe->name,
+                'Date'=>$item->dScan,
+            ];
+        }
+        $export = new HistoryExport($aData);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\History  $history
-     * @return \Illuminate\Http\Response
-     */
-    public function show(History $history)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\History  $history
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(History $history)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\History  $history
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, History $history)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\History  $history
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(History $history)
-    {
-        //
+        $filename = now()->timestamp;
+        return Excel::download($export,'historique-'.$filename.'.xlsx');
     }
 }
