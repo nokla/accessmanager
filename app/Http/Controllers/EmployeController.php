@@ -178,6 +178,7 @@ class EmployeController extends Controller
              'cin'=>$user->CIN,
              'status'=>$user->status,
              'qrcode'=>$user->qrcode,
+             'idSociete'=>$user->idSociete,
              'Societe'=>$user->Societe->name
         ];
         
