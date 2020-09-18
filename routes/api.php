@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware('api')->get('/employe/{cin}',[EmployeController::class,'getEmploye']);
+
+Route::middleware('api')->post('/checklogin',[UserController::class,'checklogin']);
