@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Societe;
 use App\Models\Employe;
+use App\Models\History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 use Redirect;
 use Auth;
 
@@ -161,16 +163,25 @@ class EmployeController extends Controller
 
     public function getEmploye(string $cin){
         $user = Employe::where('CIN',$cin)->first();
+
+        if (!$user) {
+            return '';
+        }
+
+        $oHistory = new History;
+        $oHistory->idEmploye=$user->id;
+        $oHistory->dScan = Carbon::now();
+        $oHistory->save();
+
         $return = [
             'name'=>$user->name,
              'cin'=>$user->CIN,
              'status'=>$user->status,
              'qrcode'=>$user->qrcode,
+             'idSociete'=>$user->idSociete,
              'Societe'=>$user->Societe->name
         ];
-        if (!$user) {
-            return '';
-        }
+        
         return response()->json($return);
     }
 }

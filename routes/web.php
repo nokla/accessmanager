@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SocieteController;
 use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     route::resource('employe','App\Http\Controllers\EmployeController');
     route::post('SearchEmploye',[EmployeController::class,'SearchEmploye'])->name('searchemploye');
+
+    route::get('history',[HistoryController::class,'index'])->name('history.index');
+    route::get('PrinHistory',[HistoryController::class,'print'])->name('PrintHistory');
 });
 
 Route::post('login', [LoginController::class,'login'] )->name('postLogin');

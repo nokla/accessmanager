@@ -13,13 +13,8 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            $user = Auth::user();
-            if ($user->super == 1) {
-                return Redirect::route('dashboard');
-            }
-            else{
-                return Redirect::route('employe.index');
-            }
+            // $user = Auth::user();
+            return Redirect::route('dashboard');
         }
         else{
             return Redirect::back();

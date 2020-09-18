@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Redirect;
+use Auth;
 
 class UserController extends Controller
 {
@@ -115,5 +116,23 @@ class UserController extends Controller
     {
         $user->delete();
         return Redirect::route('user.index');
+    }
+
+    public function checklogin(Request $request){
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $return = [
+                'id'=>$user->id,
+                'Name'=>$user->name,
+                'Email'=>$user->email,
+                'idSociete'=>$user->idSociete,
+                'Societe'=>$user->Societe->name
+            ];
+            return $return;
+        }
+        else{
+            return "";
+        }
     }
 }
