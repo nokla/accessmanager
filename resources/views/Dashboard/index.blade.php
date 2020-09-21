@@ -32,6 +32,19 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="col-2 item-dashbord">
+                            <div class="card text-center">
+                                <a href="{{ route('historysociete')}}">
+                                    <div class="bloc-img-item-dash">
+                                        <img class="img-item-def" src="/images/Calendar_white.png" />
+                                        <img class="img-item-hover" src="/images/Calendar_blue.png" />
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">history societe</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     @endif
                     <div class="col-2 item-dashbord">
                         <div class="card text-center">
@@ -54,24 +67,12 @@
                                     <img class="img-item-hover" src="/images/Calendar_blue.png" />
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">zone</h5>
+                                    <h5 class="card-title">History </h5>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <div class="col-2 item-dashbord">
-                        <div class="card text-center">
-                            <a href="{{ route('historysociete')}}">
-                                <div class="bloc-img-item-dash">
-                                    <img class="img-item-def" src="/images/Calendar_white.png" />
-                                    <img class="img-item-hover" src="/images/Calendar_blue.png" />
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">societe</h5>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

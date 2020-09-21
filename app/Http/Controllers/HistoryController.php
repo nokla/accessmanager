@@ -20,7 +20,16 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $oHistory = History::paginate(10);
+        if (Auth::user()->super==1) {
+            $oHistory = History::paginate(10);
+        }
+        else{
+            $idSociete=Auth::user()->idSociete;
+            $oHistory = History::whereHas('employe', function (Builder $query) use ($idSociete) {
+                $query->where('idSociete',$idSociete);
+            })->paginate(10);
+        }
+        
         return View('History.index',compact('oHistory'));
     }
 
