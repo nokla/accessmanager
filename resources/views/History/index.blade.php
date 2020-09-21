@@ -5,12 +5,6 @@
     <h1 class="titre-page-default">History</h1>   
     <a href="{{ route('PrintHistory')}}" class="btn btn-default add-btn top-btn-add">Imprimer</a> 
     <div class="d-flex align-items-center header-top-search">
-        <!-- <div class="bloc-form-search">
-            {{Form::open(['route' => ['searchsociete']])}}
-                <input name="search" class="form-control" type="text" placeholder="Search..." />
-                <button type="submit" class="btn btn-default"> <i class="fa fa-1x fa-search"></i></button>
-            {{ Form::close() }}
-        </div> -->
     </div>
     <table class="table table-striped table-defaults">
         <thead>

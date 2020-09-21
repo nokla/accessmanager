@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\History;
+use App\Models\Societe;
 use App\Exports\HistoryExport;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
 use Excel;
 use Auth;
@@ -46,5 +48,23 @@ class HistoryController extends Controller
 
         $filename = now()->timestamp;
         return Excel::download($export,'historique-'.$filename.'.xlsx');
+    }
+
+    public function HistorySociete(){
+        $oSocietes = Societe::all();
+
+        return view('History.societe',compact('oSocietes'));
+    }
+
+    public function PostHistorySociete(Request $request){
+
+        $idSociete = $request->idSociete;
+
+        $oHistory = History::whereHas('employe', function (Builder $query) use ($idSociete) {
+            $query->where('idSociete',$idSociete);
+        })->paginate(10);
+        $oSocietes = Societe::all();
+
+        return view('History.societe',compact('oHistory','oSocietes'));
     }
 }

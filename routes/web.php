@@ -37,6 +37,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('printemploye/{id}',[EmployeController::class,'PrintEmploye'])->name('employe.print');
 
     route::get('history',[HistoryController::class,'index'])->name('history.index');
+    route::get('historysociete',[HistoryController::class,'HistorySociete'])->name('historysociete');
+    route::post('historysociete',[HistoryController::class,'PostHistorySociete'])->name('posthistorysociete');
     route::get('PrinHistory',[HistoryController::class,'print'])->name('PrintHistory');
 });
 

@@ -35,10 +35,10 @@
                     @endif
                 </td>
                 <td>{{$employe->Societe->name}}</td>
-                <td>
+                <td style="text-align:right">
                     <a href="{{ route('employe.edit',$employe->id)}}" class="btn btn-default"><i class="fas fa-pen"></i></a>
                     <a href="{{ route('employe.show',$employe->id)}}" class="btn btn-default" title="Detail"><i class="far fa-eye"></i></a>
-                    <a href="{{ route('employe.print',$employe->id)}}" class="btn btn-default" title="Detail"><i class="far fa-eye"></i></a>
+                    <a href="{{ route('employe.print',$employe->id)}}" class="btn btn-default" title="Detail"><i class="fas fa-print"></i></a>
                     <button class="btn btn-default btn-supp" onclick="DeleteRecord('{{Route('employe.destroy',$employe->id)}}')">
                      <i class="far fa-trash-alt"></i>
                     </button>

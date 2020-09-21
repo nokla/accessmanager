@@ -230,6 +230,7 @@ class EmployeController extends Controller
         $oData = [
             'name'=>$employe->name,
             'prenom'=>$employe->prenom,
+            'cin'=>$employe->cin,
             'adresse'=>$employe->adresse,
             'telephone1'=>$employe->telephone1,
             'email'=>$employe->email,
