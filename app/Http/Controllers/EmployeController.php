@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Redirect;
 use Auth;
+use PDF;
 
 class EmployeController extends Controller
 {
@@ -65,13 +66,33 @@ class EmployeController extends Controller
         $validation = Validator::make($oInputs,Employe::$rules);
         // dd($oInputs);
         if ($validation->passes()) {
-            $filename = 'qrcodes/'.$oInputs['cin'].'_'.strtotime(date("Y-m-d H:i:s")).'.png';
+            $filename = 'qrcodes/'.$oInputs['cin'].'_'.strtotime(date("Y-m-d H:i:s")).'.jpg';
             
             $employe = new Employe;
             $employe->name = $oInputs['name'];
             $employe->cin = $oInputs['cin'];
-            $employe->status = $oInputs['status'];
-            \QrCode::size(200)->format('png')->generate($employe->cin, base_path('public/'.$filename));
+            $employe->idSociete = $oInputs['idSociete'];
+            $employe->prenom = $oInputs['prenom'];
+            $employe->telephone1 = $oInputs['telephone1'];
+            $employe->telephone2 = $oInputs['telephone2'];
+            $employe->email = $oInputs['email'];
+            $employe->adresse = $oInputs['adresse'];
+            $employe->birthdate = $oInputs['birthdate'];
+            $employe->nationalite = $oInputs['nationalite'];
+            $employe->sexe = $oInputs['sexe'];
+            $employe->situation = $oInputs['situation'];
+            $employe->etatcovid = $oInputs['etatcovid'];
+
+            if($oInputs['etatcovid'] == "3"){
+                $employe->status = 0;
+                $employe->raison = "positives au covid";
+            }
+            else{
+                $employe->status = $oInputs['status'];
+                $employe->raison = $oInputs['raison'];
+            }
+
+            \QrCode::size(200)->format('jpg')->generate($employe->cin, base_path('public/'.$filename));
             $employe->qrcode=$filename;
             if(Auth::user()->super==1){
                 $employe->idSociete = $oInputs['idSociete'];
@@ -82,7 +103,7 @@ class EmployeController extends Controller
             $employe->save();
             return Redirect::route('employe.index');
         }
-        return Redirect::back();
+        return Redirect::back()->withInput($oInputs)->withErrors($validation);
     }
 
     /**
@@ -129,24 +150,38 @@ class EmployeController extends Controller
             $employe = Employe::find($id);
             
             $employe->name = $oInputs['name'];
+            $employe->idSociete = $oInputs['idSociete'];
+            $employe->prenom = $oInputs['prenom'];
+            $employe->telephone1 = $oInputs['telephone1'];
+            $employe->telephone2 = $oInputs['telephone2'];
+            $employe->email = $oInputs['email'];
+            $employe->adresse = $oInputs['adresse'];
+            $employe->birthdate = $oInputs['birthdate'];
+            $employe->nationalite = $oInputs['nationalite'];
+            $employe->sexe = $oInputs['sexe'];
+            $employe->situation = $oInputs['situation'];
+            $employe->etatcovid = $oInputs['etatcovid'];
+
+            if($oInputs['etatcovid'] == "3"){
+                $employe->status = 0;
+                $employe->raison = "positives au covid";
+            }
+            else{
+                $employe->status = $oInputs['status'];
+                $employe->raison = $oInputs['raison'];
+            }
             if ($employe->CIN != $oInputs['cin']) {
                 $employe->CIN = $oInputs['cin'];
-                $filename = 'qrcodes/'.$oInputs['cin'].'_'.strtotime(date("Y-m-d H:i:s")).'.png';
-                \QrCode::size(200)->format('png')->generate($oInputs['cin'], base_path('public/'.$filename));
+                $filename = 'qrcodes/'.$oInputs['cin'].'_'.strtotime(date("Y-m-d H:i:s")).'.jpg';
+                \QrCode::size(200)->format('jpg')->generate($oInputs['cin'], base_path('public/'.$filename));
                 Storage::delete(base_path('public/'.$employe->qrcode));
                 $employe->qrcode=$filename;
             }
 
-            if ($oInputs['status']!="") {
-                $employe->status = $oInputs['status'];
-            }
-            if ($oInputs['idSociete']!="") {
-                $employe->idSociete = $oInputs['idSociete'];
-            }
             $employe->update();
             return Redirect::route('employe.index');
         }
-        return Redirect::back();
+        return Redirect::back()->withInput($oInputs)->withErrors($validation);
     }
 
     /**
@@ -175,13 +210,36 @@ class EmployeController extends Controller
 
         $return = [
             'name'=>$user->name,
-             'cin'=>$user->CIN,
-             'status'=>$user->status,
-             'qrcode'=>$user->qrcode,
-             'idSociete'=>$user->idSociete,
-             'Societe'=>$user->Societe->name
+            'cin'=>$user->CIN,
+            'status'=>$user->status,
+            'qrcode'=>$user->qrcode,
+            'idSociete'=>$user->idSociete,
+            'Societe'=>$user->Societe->name
         ];
         
         return response()->json($return);
+    }
+
+    public function PrintEmploye(int $id){
+        $employe = Employe::find($id);
+
+        if ($employe==null) {
+            return Redirect::back();
+        }
+
+        $oData = [
+            'name'=>$employe->name,
+            'prenom'=>$employe->prenom,
+            'adresse'=>$employe->adresse,
+            'telephone1'=>$employe->telephone1,
+            'email'=>$employe->email,
+            'qrcode'=>$employe->qrcode
+        ];
+
+        $qrcode = $employe->qrcode;
+
+        $oPdf = PDF::loadview('reports.employe',$oData);
+        return $oPdf->download('invoice.pdf');
+        // return view('reports.employe',compact('qrcode'));
     }
 }

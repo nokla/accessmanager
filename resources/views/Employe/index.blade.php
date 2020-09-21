@@ -36,11 +36,12 @@
                 </td>
                 <td>{{$employe->Societe->name}}</td>
                 <td>
-                    {{Form::open(['method'=>'delete','route' => ['employe.destroy',$employe->id]])}}
                     <a href="{{ route('employe.edit',$employe->id)}}" class="btn btn-default"><i class="fas fa-pen"></i></a>
                     <a href="{{ route('employe.show',$employe->id)}}" class="btn btn-default" title="Detail"><i class="far fa-eye"></i></a>
-                    <button class="btn btn-default btn-supp" type="submit"><i class="far fa-trash-alt"></i></button>
-                    {{ Form::close() }}
+                    <a href="{{ route('employe.print',$employe->id)}}" class="btn btn-default" title="Detail"><i class="far fa-eye"></i></a>
+                    <button class="btn btn-default btn-supp" onclick="DeleteRecord('{{Route('employe.destroy',$employe->id)}}')">
+                     <i class="far fa-trash-alt"></i>
+                    </button>
                 </td>
             </tr>
             @endforeach

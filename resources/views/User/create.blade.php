@@ -18,25 +18,43 @@
         {{Form::open(['route' => 'user.store'])}}
           @csrf
           <div class="form-group row align-items-center">
-            <label class="col-sm-5 col-form-label">Nom :</label>
+            <label class="col-sm-5 col-form-label">Nom* :</label>
             <div class="col-sm-7 text-right">  
-              <input type="text" class="form-control" name="name"/>
+              <input type="text" class="form-control" value="{{ old('name') }}" name="name"/>
             </div> 
           </div>
           <div class="form-group row align-items-center">
-            <label class="col-sm-5 col-form-label">Email :</label>
+            <label class="col-sm-5 col-form-label">Prenom* :</label>
             <div class="col-sm-7 text-right">  
-              <input type="email" class="form-control" name="email"/>
+              <input type="text" class="form-control" value="{{ old('prenom') }}" name="prenom"/>
             </div> 
           </div>
           <div class="form-group row align-items-center">
-            <label class="col-sm-5 col-form-label">Password :</label>
+            <label class="col-sm-5 col-form-label">Email* :</label>
+            <div class="col-sm-7 text-right">  
+              <input type="email" class="form-control" value="{{ old('email') }}" name="email"/>
+            </div> 
+          </div>
+          <div class="form-group row align-items-center">
+              <label class="col-sm-5 col-form-label">Téléphone 1 :</label>
+              <div class="col-sm-7 text-right">  
+                <input type="text" class="form-control" value="{{ old('telephone1') }}" name="telephone1"/>
+              </div> 
+            </div> 
+            <div class="form-group row align-items-center">
+              <label class="col-sm-5 col-form-label">Téléphone 2 :</label>
+              <div class="col-sm-7 text-right">  
+                <input type="text" class="form-control" value="{{ old('telephone2') }}" name="telephone2"/>
+              </div> 
+            </div> 
+          <div class="form-group row align-items-center">
+            <label class="col-sm-5 col-form-label">Password* :</label>
             <div class="col-sm-7 text-right">  
               <input type="text" class="form-control" name="password"/>
             </div> 
           </div>
           <div class="form-group row align-items-center">
-            <label class="col-sm-5 col-form-label">Societe :</label>
+            <label class="col-sm-5 col-form-label">Societe* :</label>
             <div class="col-sm-7 text-right select-bloc">  
               <select name="idSociete" class="form-control">
                 <option value="">--------------</option>

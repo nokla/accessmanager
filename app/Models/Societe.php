@@ -10,11 +10,17 @@ class Societe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name','activite','telephone1','telephone2','adresse','interlocuteur','remarque'
     ];
 
     public static $rules=[
-        'name'=>'required|string'
+        'name'=>'required|string',
+        'activite'=>'required|string',
+        'telephone1'=>'required|digits_between:10,14',
+        'telephone2'=>'required|digits_between:10,14',
+        'adresse'=>'required|string',
+        'interlocuteur'=>'required|string',
+        'remarque'=>'required|string',
     ];
 
     public function Employes(){

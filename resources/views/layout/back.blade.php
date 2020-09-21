@@ -15,7 +15,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="/css/site.css" rel="stylesheet">
-
+    <script src="/js/app.js"></script>
     <title>Access Manager</title>
 </head>
 <body>
@@ -49,5 +49,9 @@
     <div class="container">
         @yield('content')
     </div>
+    <form id="frmDelete" method="post" accept-charset="UTF-8" style="display:hidden;">
+    <input name="_method" value="DELETE" type="hidden">
+    {{csrf_field()}}
+</form>
 </body>
 </html>

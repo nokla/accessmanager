@@ -51,11 +51,11 @@ class SocieteController extends Controller
         $validation = Validator::make($oInputs,Societe::$rules);
         if ($validation->passes()) {
             $societe = new Societe;
-            $societe->name = $oInputs['name'];
+            $societe->fill($oInputs);
             $societe->save();
             return Redirect::route('societe.index');
         }
-        return Redirect::back();
+        return Redirect::back()->withInput($oInputs)->withErrors($validation);
     }
 
     /**

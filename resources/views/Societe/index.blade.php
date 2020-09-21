@@ -16,6 +16,10 @@
         <thead>
             <tr>
                 <td>Nom</td>
+                <td>Activité</td>
+                <td>Téléphone</td>
+                <td>Téléphone</td>
+                <td>Interlocuteur</td>
                 <td></td>
             </tr>
         </thead>
@@ -23,14 +27,16 @@
             @foreach($societes as $societe)
             <tr>
                 <td>{{$societe->name}}</td>
+                <td>{{$societe->activite}}</td>
+                <td>{{$societe->telephone1}}</td>
+                <td>{{$societe->telephone2}}</td>
+                <td>{{$societe->interlocuteur}}</td>
                 <td>
-                    <form action="{{ route('societe.destroy', $societe->id)}}" method="post">
-                    @csrf
-                    @method('DELETE')
                     <a href="{{ route('societe.edit',$societe->id)}}" class="btn btn-default"><i class="fas fa-pen"></i></a>
                     <a href="{{ route('addemployes',$societe->id)}}" class="btn btn-default add-btn" title="Ajouter Employes"><i class="fas fa-plus"></i></a>
-                    <button class="btn btn-default btn-supp" type="submit"><i class="far fa-trash-alt"></i></button>
-                    </form>
+                    <button class="btn btn-default btn-supp" onclick="DeleteRecord('{{Route('societe.destroy',$societe->id)}}')">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
                 </td>
             </tr>
             @endforeach

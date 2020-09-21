@@ -9,14 +9,36 @@ class Employe extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'cin', 'status', 'qrcode', 'idSociete'
+        'name', 'cin', 'status', 'qrcode', 'idSociete',
+        'prenom',
+        'telephone1',
+        'telephone2',
+        'email',
+        'adresse',
+        'birthdate',
+        'nationalite',
+        'sexe',
+        'situation',
+        'raison',
+        'etatcovid'
     ];
 
     public static $rules=[
         'name'=>'required|string',
         'cin'=>'required|string',
         'status'=>'required|integer',
-        'idSociete'=>'nullable|integer'
+        'idSociete'=>'nullable|integer',
+        'prenom'=>'nullable|string',
+        'telephone1'=>'nullable|digits_between:10,14',
+        'telephone2'=>'nullable|digits_between:10,14',
+        'email'=>'nullable|email',
+        'adresse'=>'required|string',
+        'birthdate'=>'nullable|date',
+        'nationalite'=>'nullable|string',
+        'sexe'=>'nullable|string',
+        'situation'=>'nullable|string',
+        'raison'=>'nullable|string',
+        'etatcovid'=>'nullable|integer'
     ];
 
     public static $updateRules=[

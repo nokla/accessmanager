@@ -47,14 +47,12 @@ class UserController extends Controller
         // dd($oInputs);
         if ($validation->passes()) {
             $user = new User;
-            $user->name = $oInputs['name'];
-            $user->email = $oInputs['email'];
+            $user->fill($oInputs);
             $user->password = Hash::make($oInputs['password']);
-            $user->idSociete = $oInputs['idSociete'];
             $user->save();
             return Redirect::route('user.index');
         }
-        return Redirect::back();
+        return Redirect::back()->withInput($oInputs)->withErrors($validation);
     }
 
     /**
@@ -74,8 +72,9 @@ class UserController extends Controller
      * @param  \App\Models\Societe  $societe
      * @return \Illuminate\Http\Response
      */
-    public function edit(Societe $user)
+    public function edit(int $id)
     {
+        $user = User::find($id);
         $societes = Societe::all();
         return View('User.edit',compact('user','societes'));
     }
@@ -93,17 +92,17 @@ class UserController extends Controller
         $validation = Validator::make($oInputs,User::$updateRules);
         if ($validation->passes()) {
             $user->name = $oInputs['name'];
+            $user->prenom = $oInputs['prenom'];
             $user->email = $oInputs['email'];
+            $user->telephone1 = $oInputs['telephone1'];
+            $user->telephone2 = $oInputs['telephone2'];
             if ($oInputs['password']!="") {
                 $user->password = Hash::make($oInputs['password']);
-            }
-            if ($oInputs['idSociete']!="") {
-                $user->idSociete = $oInputs['idSociete'];
             }
             $user->update();
             return Redirect::route('user.index');
         }
-        return Redirect::back();
+        return Redirect::back()->withInput($oInputs)->withErrors($validation);
     }
 
     /**

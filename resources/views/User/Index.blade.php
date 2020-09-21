@@ -20,12 +20,10 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->Societe->name}}</td>
                 <td>
-                    <form action="{{ route('user.destroy', $user->id)}}" method="post">
-                    @csrf
-                    @method('DELETE')
                     <a href="{{ route('user.edit',$user->id)}}" class="btn btn-default"><i class="fas fa-pen"></i></a>
-                    <button class="btn btn-default btn-supp" type="submit"><i class="far fa-trash-alt"></i></button>
-                    </form>
+                    <button class="btn btn-default btn-supp" onclick="DeleteRecord('{{Route('user.destroy',$user->id)}}')">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
                 </td>
             </tr>
             @endforeach

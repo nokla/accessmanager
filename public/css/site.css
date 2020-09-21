@@ -487,11 +487,11 @@ input[type="password"]:placeholder {
     border: 0;
     vertical-align: middle;
 }
-.table-defaults form{
+.table-defaults{
     margin-bottom: 0;
     text-align: right;
 }
-.table-defaults form .btn-default{
+.table-defaults .btn-default{
     height: 34px;
     width: 34px;
     padding: 6px 5px;
@@ -500,11 +500,11 @@ input[type="password"]:placeholder {
     border-radius: 50%;
     justify-content: center;
 }
-.table-defaults form .btn-supp{
+.table-defaults .btn-supp{
     background-color: #dc3545;
     border: 1px solid #dc3545;
 }
-.table-defaults form .btn-supp:hover{
+.table-defaults .btn-supp:hover{
     background-color: transparent;
     color: #dc3545;
 }

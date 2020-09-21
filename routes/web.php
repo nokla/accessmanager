@@ -34,6 +34,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     route::resource('employe','App\Http\Controllers\EmployeController');
     route::post('SearchEmploye',[EmployeController::class,'SearchEmploye'])->name('searchemploye');
+    Route::get('printemploye/{id}',[EmployeController::class,'PrintEmploye'])->name('employe.print');
 
     route::get('history',[HistoryController::class,'index'])->name('history.index');
     route::get('PrinHistory',[HistoryController::class,'print'])->name('PrintHistory');

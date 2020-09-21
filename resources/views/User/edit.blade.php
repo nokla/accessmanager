@@ -17,15 +17,33 @@
         @endif
         {{Form::open(['method'=>'patch','route' => ['user.update',$user->id]])}}
           <div class="form-group row align-items-center">
-            <label class="col-sm-5 col-form-label">Nom :</label>
+            <label class="col-sm-5 col-form-label">Nom* :</label>
             <div class="col-sm-7 text-right">  
               <input type="text" class="form-control" value="{{$user->name}}" name="name"/>
             </div> 
           </div>
           <div class="form-group row align-items-center">
-            <label class="col-sm-5 col-form-label">Email :</label>
+            <label class="col-sm-5 col-form-label">Prenom* :</label>
+            <div class="col-sm-7 text-right">  
+              <input type="text" class="form-control" value="{{ $user->prenom }}" name="prenom"/>
+            </div> 
+          </div>
+          <div class="form-group row align-items-center">
+            <label class="col-sm-5 col-form-label">Email* :</label>
             <div class="col-sm-7 text-right">  
               <input type="text" class="form-control" value="{{$user->email}}" name="email"/>
+            </div> 
+          </div>
+          <div class="form-group row align-items-center">
+            <label class="col-sm-5 col-form-label">Téléphone 1 :</label>
+            <div class="col-sm-7 text-right">  
+              <input type="text" class="form-control" value="{{ $user->telephone1 }}" name="telephone1"/>
+            </div> 
+          </div>
+          <div class="form-group row align-items-center">
+            <label class="col-sm-5 col-form-label">Téléphone 2 :</label>
+            <div class="col-sm-7 text-right">  
+              <input type="text" class="form-control" value="{{ $user->telephone2 }}" name="telephone2"/>
             </div> 
           </div>
           <div class="form-group row align-items-center">
@@ -35,12 +53,16 @@
             </div> 
           </div>
           <div class="form-group row align-items-center">
-            <label class="col-sm-5 col-form-label">Societe :</label>
+            <label class="col-sm-5 col-form-label">Societe* :</label>
             <div class="col-sm-7 text-right select-bloc">  
               <select name="idSociete" value="" class="form-control">
                 <option value="">--------------</option>
                 @foreach($societes as $societe)
-                    <option value="{{$societe->id}}">{{$societe->name}}</option>
+                  @if($societe->id==$user->idSociete)
+                    <option value="{{$societe->id}}" selected>{{$societe->name}}</option>
+                  @else
+                  <option value="{{$societe->id}}">{{$societe->name}}</option>
+                  @endif
                 @endforeach
               </select>
             </div> 
