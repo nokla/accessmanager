@@ -66,12 +66,15 @@ class EmployeController extends Controller
         $validation = Validator::make($oInputs,Employe::$rules);
         // dd($oInputs);
         if ($validation->passes()) {
-            $filename = 'qrcodes/'.$oInputs['cin'].'_'.strtotime(date("Y-m-d H:i:s")).'.jpg';
-            
             $employe = new Employe;
             $employe->name = $oInputs['name'];
             $employe->cin = $oInputs['cin'];
-            $employe->idSociete = $oInputs['idSociete'];
+            if(Auth::user()->super == 1){
+                $employe->idSociete = $oInputs['idSociete'];
+            }
+            else{
+                $employe->idSociete = Auth::user()->idSociete;
+            }
             $employe->prenom = $oInputs['prenom'];
             $employe->telephone1 = $oInputs['telephone1'];
             $employe->telephone2 = $oInputs['telephone2'];
@@ -79,8 +82,11 @@ class EmployeController extends Controller
             $employe->adresse = $oInputs['adresse'];
             $employe->birthdate = $oInputs['birthdate'];
             $employe->nationalite = $oInputs['nationalite'];
-            $employe->sexe = $oInputs['sexe'];
+            if ($request->sexe) {
+                $employe->sexe = $oInputs['sexe'];
+            }
             $employe->situation = $oInputs['situation'];
+
             $employe->etatcovid = $oInputs['etatcovid'];
 
             if($oInputs['etatcovid'] == "3"){
@@ -92,14 +98,10 @@ class EmployeController extends Controller
                 $employe->raison = $oInputs['raison'];
             }
 
-            \QrCode::size(200)->format('jpg')->generate($employe->cin, base_path('public/'.$filename));
+            $filename = 'qrcodes/'.$oInputs['cin'].'_'.strtotime(date("Y-m-d H:i:s")).'.png';
+            // \QrCode::size(200)->format('png')->generate($employe->cin, base_path('public/'.$filename));
             $employe->qrcode=$filename;
-            if(Auth::user()->super==1){
-                $employe->idSociete = $oInputs['idSociete'];
-            }
-            else{
-                $employe->idSociete = Auth::user()->idSociete;
-            }
+            
             $employe->save();
             return Redirect::route('employe.index');
         }
@@ -145,12 +147,17 @@ class EmployeController extends Controller
     public function update(Request $request, $id)
     {
         $oInputs = $request->all();
-        $validation = Validator::make($oInputs,Employe::$updateRules);
+        $validation = Validator::make($oInputs,Employe::$rules);
         if ($validation->passes()) {
             $employe = Employe::find($id);
             
             $employe->name = $oInputs['name'];
-            $employe->idSociete = $oInputs['idSociete'];
+            if(Auth::user()->super == 1){
+                $employe->idSociete = $oInputs['idSociete'];
+            }
+            else{
+                $employe->idSociete = Auth::user()->idSociete;
+            }
             $employe->prenom = $oInputs['prenom'];
             $employe->telephone1 = $oInputs['telephone1'];
             $employe->telephone2 = $oInputs['telephone2'];
@@ -158,7 +165,9 @@ class EmployeController extends Controller
             $employe->adresse = $oInputs['adresse'];
             $employe->birthdate = $oInputs['birthdate'];
             $employe->nationalite = $oInputs['nationalite'];
-            $employe->sexe = $oInputs['sexe'];
+            if ($request->sexe) {
+                $employe->sexe = $oInputs['sexe'];
+            }
             $employe->situation = $oInputs['situation'];
             $employe->etatcovid = $oInputs['etatcovid'];
 
@@ -172,8 +181,8 @@ class EmployeController extends Controller
             }
             if ($employe->CIN != $oInputs['cin']) {
                 $employe->CIN = $oInputs['cin'];
-                $filename = 'qrcodes/'.$oInputs['cin'].'_'.strtotime(date("Y-m-d H:i:s")).'.jpg';
-                \QrCode::size(200)->format('jpg')->generate($oInputs['cin'], base_path('public/'.$filename));
+                $filename = 'qrcodes/'.$oInputs['cin'].'_'.strtotime(date("Y-m-d H:i:s")).'.png';
+                \QrCode::size(200)->format('png')->generate($oInputs['cin'], base_path('public/'.$filename));
                 Storage::delete(base_path('public/'.$employe->qrcode));
                 $employe->qrcode=$filename;
             }

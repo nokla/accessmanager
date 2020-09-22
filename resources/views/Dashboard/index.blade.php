@@ -67,7 +67,7 @@
                                     <img class="img-item-hover" src="/images/Calendar_blue.png" />
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">History </h5>
+                                    <h5 class="card-title">History Zone</h5>
                                 </div>
                             </a>
                         </div>

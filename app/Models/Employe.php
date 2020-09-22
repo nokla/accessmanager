@@ -29,7 +29,7 @@ class Employe extends Model
         'status'=>'required|integer',
         'idSociete'=>'nullable|integer',
         'prenom'=>'nullable|string',
-        'telephone1'=>'nullable|digits_between:10,14',
+        'telephone1'=>'required|digits_between:10,14',
         'telephone2'=>'nullable|digits_between:10,14',
         'email'=>'nullable|email',
         'adresse'=>'required|string',
@@ -38,7 +38,7 @@ class Employe extends Model
         'sexe'=>'nullable|string',
         'situation'=>'nullable|string',
         'raison'=>'nullable|string',
-        'etatcovid'=>'nullable|integer'
+        'etatcovid'=>'required|integer'
     ];
 
     public static $updateRules=[

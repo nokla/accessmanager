@@ -120,7 +120,7 @@
           <div class="form-group row align-items-center">
             <label class="col-sm-5 col-form-label">QrCode :</label>
             <div class="offset-sm-5 col-sm-7 text-right">  
-              <p><img src="/{{$employe->qrcode}}" /></p>
+              <p><img src="{{ asset($employe->qrcode) }}" /></p>
             </div> 
           </div>  
           <div class="bloc-btn-page-form">

@@ -125,8 +125,8 @@ class SocieteController extends Controller
             $employe = new Employe;
             $lineParts = explode(';',$line);
             $employe->name = $lineParts[2];
-            $employe->cin = $lineParts[3];
-            $filename = 'qrcodes/'.$lineParts[3].'_'.strtotime(date("Y-m-d H:i:s")).'.png';
+            $employe->cin = trim($lineParts[3]);
+            $filename = 'qrcodes/'.$employe->cin.'_'.strtotime(date("Y-m-d H:i:s")).'.png';
             \QrCode::size(200)->format('png')->generate($lineParts[3], base_path('public/'.$filename));
             $employe->qrcode=$filename;
             $employe->idSociete = $idSociete;

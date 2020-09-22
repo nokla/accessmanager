@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SocieteController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\HistoryController;
+use App\Models\Employe;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     route::get('history',[HistoryController::class,'index'])->name('history.index');
     route::get('historysociete',[HistoryController::class,'HistorySociete'])->name('historysociete');
     route::post('historysociete',[HistoryController::class,'PostHistorySociete'])->name('posthistorysociete');
+    route::get('printhistorysociete/{id}',[HistoryController::class,'PrintHistorySociete'])->name('printhistorysociete');
     route::get('PrinHistory',[HistoryController::class,'print'])->name('PrintHistory');
 });
 
@@ -52,4 +54,22 @@ Route::get('logout', function () {
     Auth::logout();
     return Redirect::route('login');
 })->name('logout');
+
+// Route::get('fixnaming', function () {
+//     $employes = Employe::where("qrcode","like","%\r%")->get();
+
+//     foreach ($employes as $item ) {
+//         $qrcode = $item->qrcode;
+//         $noise = ['\r','\n','\r\n'];
+//         $newname = str_replace("\r\n","",$qrcode);
+//         $newname = str_replace("/","\\",$newname);
+//         $qrcode = str_replace("/","\\",$qrcode);
+//         // dd($newname);
+//         rename(base_path('public\\'.$qrcode),base_path('public\\'.$newname));
+//         $item->qrcode=$newname;
+//         $item->update();
+//     }
+
+//     return $newname;
+// });
 

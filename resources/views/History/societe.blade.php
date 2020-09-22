@@ -9,7 +9,7 @@
                 <div class="form-group row align-items-center">
                     <label class="col-sm-5 col-form-label">Societe :</label>
                     <div class="col-sm-7 text-right select-bloc">  
-                        <select class="form-control" name="idSociete">
+                        <select class="form-control" name="idSociete" onclick="setupPrint(this.value);">
                             <option value="">--------------</option>
                             @foreach($oSocietes as $societe)
                                 <option value="{{$societe->id}}">{{$societe->name}}</option>
@@ -18,6 +18,7 @@
                     </div> 
                 </div> 
                 <button type="submit" class="btn btn-default"> <i class="fa fa-1x fa-search"></i></button>
+                <a href="" id="lnkPrintSocieteHistory" class="btn btn-default add-btn top-btn-add">Imprimer</a> 
             {{ Form::close() }}
         </div>
     </div>
