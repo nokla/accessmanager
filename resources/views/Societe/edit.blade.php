@@ -54,6 +54,12 @@
               </div> 
             </div> 
             <div class="form-group row align-items-center">
+              <label class="col-sm-5 col-form-label">Starts :</label>
+              <div class="col-sm-7 text-right">  
+                <input type="time" class="form-control" value="{{ $societe->tStarts }}" name="tStarts"/>
+              </div> 
+            </div> 
+            <div class="form-group row align-items-center">
               <label class="col-sm-5 col-form-label">Remarques :</label>
               <div class="col-sm-7 text-right">  
                 <textarea name="remarque" class="form-control" id="" cols="30" rows="10">{{ $societe->remarque }}</textarea>

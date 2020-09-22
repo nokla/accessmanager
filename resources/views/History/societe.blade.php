@@ -29,6 +29,7 @@
                 <td>CIN</td>
                 <td>Societe</td>
                 <td>Date Scan</td>
+                <td>Retard</td>
                 <td></td>
             </tr>
         </thead>
@@ -40,6 +41,7 @@
                         <td>{{$history->Employe->CIN}}</td>
                         <td>{{$history->Employe->Societe->name}}</td>
                         <td>{{$history->dScan}}</td>
+                        <td>{{$history->bRetard == 1 ? 'Oui' : 'Non' }}</td>
                     </tr>
                     @endforeach
             @endif

@@ -90,12 +90,12 @@ class SocieteController extends Controller
     public function update(Request $request, Societe $societe)
     {
         $oInputs = $request->all();
-        $validation = Validator::make($oInputs,Societe::$rules);
+        $validation = Validator::make($oInputs,Societe::$UpdateRules);
         if ($validation->passes()) {
             $societe->update($oInputs);
             return Redirect::route('societe.index');
         }
-        return Redirect::back();
+        return Redirect::back()->withInput($oInputs)->withErrors($validation);
     }
 
     /**

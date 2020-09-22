@@ -9,7 +9,7 @@
     <label>{{$adresse}}</label><br>
     <label>{{$telephone1}}</label><br>
     <label>{{$email}}</label><br>
-
+    <img src="{{asset($qrcode)}}" />
   </div>
 </body>
 </html>
