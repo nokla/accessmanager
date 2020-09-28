@@ -10,12 +10,17 @@
 
     <link rel="icon" href="Favicon.png">
     
-    <link href="/css/fontawesome/css/all.min.css" rel="stylesheet" type="text/css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="/plugins/fontawesome/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/datatable/datatables.min.css" rel="stylesheet" type="text/css">
+    <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
     <link href="/css/site.css" rel="stylesheet">
+    
     <script src="/js/app.js"></script>
+    <script src="/plugins/datatable/datatables.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+
     <title>Access Manager</title>
 </head>
 <body>
@@ -50,8 +55,9 @@
         @yield('content')
     </div>
     <form id="frmDelete" method="post" accept-charset="UTF-8" style="display:hidden;">
-    <input name="_method" value="DELETE" type="hidden">
-    {{csrf_field()}}
-</form>
+        <input name="_method" value="DELETE" type="hidden">
+        {{csrf_field()}}
+    </form>
+    @yield("script")
 </body>
 </html>

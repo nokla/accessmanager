@@ -80,6 +80,37 @@ class HistoryController extends Controller
         return view('History.societe',compact('oSocietes'));
     }
 
+    public function GetHistorySociete(Request $request){
+        $iDraw = $request['draw'];
+        $iRow = $request['start'];
+        $iRowPerPage = $request['length'];
+        $idSociete = $request["idSociete"];
+        // $aColumns = ['id','c_name','c_type','c_cin','c_registre'];
+
+        if($idSociete){
+            $oHistories = History::whereHas('employe', function (Builder $query) use ($idSociete) {
+                $query->where('idSociete',$idSociete);
+            })->whereNotNull('bRetard')->limit($iRowPerPage)->offset($iRow)->get()->toArray();
+        }
+        else{
+            $oHistories = History::whereHas('employe', function (Builder $query) use ($idSociete) {
+                $query->where('idSociete',$idSociete);
+            })->whereNotNull('bRetard')->limit(10);
+        }
+
+        $iTotalDisplayRecords = count($oHistories);
+        $iTotalRecords = count($oHistories);
+        // dd($oHistories);
+        $response = [
+            "draw"=>intval($iDraw),
+            "iTotalRecords" => $iTotalDisplayRecords,
+            "iTotalDisplayRecords" => $iTotalRecords,
+            "data" => $oHistories
+        ];
+
+        return $response;
+    }
+
     public function PostHistorySociete(Request $request){
 
         $idSociete = $request->idSociete;
