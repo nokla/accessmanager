@@ -53,7 +53,6 @@
 
         document.getElementById("LoadButton").addEventListener("click",function(){
             LoadBySociete(strUrl);
-            console.log($("#idSociete").val());
         });
     </script>
 @endsection

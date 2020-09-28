@@ -6,30 +6,30 @@
     <a href="{{ route('PrintHistory')}}" class="btn btn-default add-btn top-btn-add">Imprimer</a> 
     <div class="d-flex align-items-center header-top-search">
     </div>
-    <table class="table table-striped table-defaults">
+    <table class="table table-striped table-defaults dt-responsive" id="tblHistory">
         <thead>
             <tr>
-                <td>Nom</td>
-                <td>CIN</td>
-                <td>Societe</td>
-                <td>Date Scan</td>
-                <td></td>
+                <th class="all">Nom</th>
+                <th class="min-phone-l">CIN</th>
+                <th class="min-phone-l">Societe</th>
+                <th class="min-phone-l">Date Scan</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach($oHistory as $history)
-            <tr>
-                <td>{{$history->Employe->name}}</td>
-                <td>{{$history->Employe->CIN}}</td>
-                <td>{{$history->Employe->Societe->name}}</td>
-                <td>{{$history->dScan}}</td>
-            </tr>
-            @endforeach
-        </tbody>
     </table>
-    <div class="d-flex justify-content-end">
-        {!! $oHistory->links() !!}
-    </div>
 <div>
 
+@endsection
+
+@section("script")
+    <script type="text/javascript">
+        var strUrl = "{{route('getHistory')}}";
+        var aColumns = [
+            { data: "name" },
+            { data: "cin" },
+            { data: "societe" },
+            { data: "dScan" }
+        ];
+        initDataTable(strUrl,aColumns,"#tblHistory");
+
+    </script>
 @endsection

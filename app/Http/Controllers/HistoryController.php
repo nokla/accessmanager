@@ -75,9 +75,45 @@ class HistoryController extends Controller
     }
 
     public function HistorySociete(){
-        $oSocietes = Societe::all();
+        return view('History.societe');
+    }
 
-        return view('History.societe',compact('oSocietes'));
+    public function GetHistory(Request $request){
+        $iDraw = $request['draw'];
+        $iRow = $request['start'];
+        $iRowPerPage = $request['length'];
+
+        if ( Auth::user()->super==1 ) {
+            $oHistories = History::whereNull('bRetard')->limit($iRowPerPage)->offset($iRow)->get();
+            $iTotalRecords = History::whereNull('bRetard')->count();
+        }
+        else{
+            $idSociete=Auth::user()->idSociete;
+            $oHistories = History::whereHas('employe', function (Builder $query) use ($idSociete) {
+                $query->where('idSociete',$idSociete);
+            })->whereNull('bRetard')->limit($iRowPerPage)->offset($iRow)->get();
+            $iTotalRecords = count($oHistories);
+        }
+
+        $iTotalDisplayRecords = count($oHistories);
+
+        $data=[];
+        foreach ($oHistories as $item) {
+            array_push($data,[
+                "name"=>$item->Employe->name,
+                "cin"=>$item->Employe->CIN,
+                "societe"=>$item->Employe->Societe->name,
+                "dScan"=>$item->dScan
+            ]);
+        }
+        $response = [
+            "draw"=>intval($iDraw),
+            "iTotalRecords" => $iTotalDisplayRecords,
+            "iTotalDisplayRecords" => $iTotalRecords,
+            "data" => $data
+        ];
+
+        return $response;
     }
 
     public function GetHistorySociete(Request $request){
@@ -89,7 +125,7 @@ class HistoryController extends Controller
         if($idSociete == 0){
             $oHistories = History::whereNotNull('bRetard')->limit($iRowPerPage)->offset($iRow)->get();
             $iTotalRecords = History::whereNotNull('bRetard')->count();
-    }
+        }
         else{
             $oHistories = History::whereHas('employe', function (Builder $query) use ($idSociete) {
                 $query->where('idSociete',$idSociete);

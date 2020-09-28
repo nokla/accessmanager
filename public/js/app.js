@@ -39,7 +39,9 @@ function initDataTable(strURL, aColumns, strIdTable) {
             url: strURL,
             type: "post",
             data: function (d) {
-                d.idSociete = $("#idSociete").val();
+                if ($("#idSociete").val()) {
+                    d.idSociete = $("#idSociete").val();
+                }
             },
         },
         columns: aColumns,
