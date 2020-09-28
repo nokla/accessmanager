@@ -52,7 +52,7 @@
         LoadHistoryBySociete();
 
         document.getElementById("LoadButton").addEventListener("click",function(){
-            LoadBySociete(strUrl);
+            LoadBySociete();
         });
     </script>
 @endsection

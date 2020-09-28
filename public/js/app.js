@@ -14,9 +14,7 @@ function setupPrint(id) {
     }
 }
 
-function LoadBySociete(strURL) {
-    // var idSociete = document.getElementById("idSociete").value;
-    // $("#tblHistorysociete").DataTable().ajax.data({ idSociete: idSociete });
+function LoadBySociete() {
     $("#tblHistorysociete").DataTable().ajax.reload();
 }
 

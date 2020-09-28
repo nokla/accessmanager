@@ -75,7 +75,9 @@ class HistoryController extends Controller
     }
 
     public function HistorySociete(){
-        return view('History.societe');
+        $oSocietes = Societe::all();
+
+        return view('History.societe',compact('oSocietes'));
     }
 
     public function GetHistory(Request $request){
@@ -83,7 +85,7 @@ class HistoryController extends Controller
         $iRow = $request['start'];
         $iRowPerPage = $request['length'];
 
-        if ( Auth::user()->super==1 ) {
+        if ( Auth::user()->super==1) {
             $oHistories = History::whereNull('bRetard')->limit($iRowPerPage)->offset($iRow)->get();
             $iTotalRecords = History::whereNull('bRetard')->count();
         }
