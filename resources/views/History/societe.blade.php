@@ -16,7 +16,7 @@
                         </select>
                     </div> 
                 </div> 
-                <button onclick="LoadHistoryBySociete()" class="btn btn-default"> <i class="fa fa-1x fa-search"></i></button>
+                <button id="LoadButton" class="btn btn-default"> <i class="fa fa-1x fa-search"></i></button>
                 <a href="" id="lnkPrintSocieteHistory" class="btn btn-default add-btn top-btn-add"><i class="fa fa-1x fa-print"></i></a> 
         </div>
     </div>
@@ -27,6 +27,7 @@
                 <th class="min-phone-l">CIN</th>
                 <th class="min-phone-l">Societe</th>
                 <th class="min-phone-l">Date Scan</th>
+                <th class="min-phone-l">Retard</th>
             </tr>
         </thead>
     </table>
@@ -36,17 +37,23 @@
 
 @section("script")
     <script type="text/javascript">
+        var strUrl = "{{route('getHistorySociete')}}";
         function LoadHistoryBySociete(){
             var aColumns = [
                 { data: "name" },
-                { data: "CIN" },
-                { data: "idSociete" },
-                { data: "dScan" }
+                { data: "cin" },
+                { data: "societe" },
+                { data: "dScan" },
+                { data: "retard" }
             ];
-            var strUrl = "{{route('getHistorySociete')}}";
-            var idSociete = document.getElementById('idSociete').value;
-            initDataTable(strUrl,aColumns,"#tblHistorysociete",idSociete);
+            var oSociete = document.getElementById('idSociete');
+            initDataTable(strUrl,aColumns,"#tblHistorysociete",oSociete);
         }
         LoadHistoryBySociete();
+
+        document.getElementById("LoadButton").addEventListener("click",function(){
+            LoadBySociete(strUrl);
+            console.log($("#idSociete").val());
+        });
     </script>
 @endsection

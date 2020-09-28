@@ -85,27 +85,34 @@ class HistoryController extends Controller
         $iRow = $request['start'];
         $iRowPerPage = $request['length'];
         $idSociete = $request["idSociete"];
-        // $aColumns = ['id','c_name','c_type','c_cin','c_registre'];
 
-        if($idSociete){
-            $oHistories = History::whereHas('employe', function (Builder $query) use ($idSociete) {
-                $query->where('idSociete',$idSociete);
-            })->whereNotNull('bRetard')->limit($iRowPerPage)->offset($iRow)->get()->toArray();
-        }
+        if($idSociete == 0){
+            $oHistories = History::whereNotNull('bRetard')->limit($iRowPerPage)->offset($iRow)->get();
+            $iTotalRecords = History::whereNotNull('bRetard')->count();
+    }
         else{
             $oHistories = History::whereHas('employe', function (Builder $query) use ($idSociete) {
                 $query->where('idSociete',$idSociete);
-            })->whereNotNull('bRetard')->limit(10);
+            })->whereNotNull('bRetard')->limit($iRowPerPage)->offset($iRow)->get();
+            $iTotalRecords = count($oHistories);
         }
 
         $iTotalDisplayRecords = count($oHistories);
-        $iTotalRecords = count($oHistories);
-        // dd($oHistories);
+        $data=[];
+        foreach ($oHistories as $item) {
+            array_push($data,[
+                "name"=>$item->Employe->name,
+                "cin"=>$item->Employe->CIN,
+                "societe"=>$item->Employe->Societe->name,
+                "retard"=>$item->bRetard==1 ? "Oui" : "Non",
+                "dScan"=>$item->dScan
+            ]);
+        }
         $response = [
             "draw"=>intval($iDraw),
             "iTotalRecords" => $iTotalDisplayRecords,
             "iTotalDisplayRecords" => $iTotalRecords,
-            "data" => $oHistories
+            "data" => $data
         ];
 
         return $response;
@@ -129,14 +136,15 @@ class HistoryController extends Controller
             $query->where('idSociete',$id);
         })->get();
 
-        $aData[] = ['Nom','CIN','Status','Societe','Date scan'];
+        $aData[] = ['Nom','CIN','Status','Societe','Date scan','Retard'];
         foreach ($aHistories as $item ) {
                 $aData[] = [
                     'Nom'=>$item->Employe->name,
                     'CIN'=>$item->Employe->CIN,
                     'Status'=>(($item->Employe->status == 1 ) ? 'Active' : 'Desactiver'),
                     'Societe'=>$item->Employe->Societe->name,
-                    'Date'=>$item->dScan
+                    'Date'=>$item->dScan,
+                    'Retard'=>$item->bRetard==1 ? "Oui" : "Non"
                 ];
         }
         $export = new HistoryExport($aData);

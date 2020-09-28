@@ -26,3 +26,5 @@ Route::middleware('api')->get('/employe/{cin}',[EmployeController::class,'getEmp
 Route::middleware('api')->get('/employe/{cin}/{idSociete}',[HistoryController::class,'Checkin']);
 
 Route::middleware('api')->post('/checklogin',[UserController::class,'checklogin']);
+
+route::middleware('api')->post('/gethistorysociete',[HistoryController::class,'GetHistorySociete'])->name('getHistorySociete');
