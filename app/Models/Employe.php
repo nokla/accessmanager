@@ -38,7 +38,7 @@ class Employe extends Model
         'sexe'=>'nullable|string',
         'situation'=>'nullable|string',
         'raison'=>'nullable|string',
-        'etatcovid'=>'required|integer'
+        'etatcovid'=>'nullable|integer'
     ];
 
     public static $updateRules=[

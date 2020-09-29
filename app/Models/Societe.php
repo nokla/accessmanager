@@ -15,24 +15,24 @@ class Societe extends Model
 
     public static $rules=[
         'name'=>'required|string',
-        'activite'=>'required|string',
-        'telephone1'=>'required|digits_between:10,14',
-        'telephone2'=>'required|digits_between:10,14',
-        'adresse'=>'required|string',
-        'interlocuteur'=>'required|string',
-        'remarque'=>'required|string',
+        'activite'=>'nullable|string',
+        'telephone1'=>'nullable|digits_between:10,14',
+        'telephone2'=>'nullable|digits_between:10,14',
+        'adresse'=>'nullable|string',
+        'interlocuteur'=>'nullable|string',
+        'remarque'=>'nullable|string',
         'tStarts'=>'required|date_format:H:i',
     ];
 
     public static $UpdateRules=[
         'name'=>'required|string',
-        'activite'=>'required|string',
-        'telephone1'=>'required|digits_between:10,14',
-        'telephone2'=>'required|digits_between:10,14',
-        'adresse'=>'required|string',
-        'interlocuteur'=>'required|string',
-        'remarque'=>'required|string',
-        'tStarts'=>'required|date_format:H:i:s',
+        'activite'=>'nullable|string',
+        'telephone1'=>'nullable|digits_between:10,14',
+        'telephone2'=>'nullable|digits_between:10,14',
+        'adresse'=>'nullable|string',
+        'interlocuteur'=>'nullable|string',
+        'remarque'=>'nullable|string',
+        'tStarts'=>'required|date_format:H:i',
     ];
 
     public function Employes(){

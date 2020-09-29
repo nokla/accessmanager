@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Societe;
 use App\Models\Employe;
 use App\Models\History;
+use App\Exports\EmployeExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Excel;
 use Redirect;
 use Auth;
 use PDF;
@@ -251,5 +253,55 @@ class EmployeController extends Controller
         $oPdf = PDF::loadview('reports.employe',$oData);
         return $oPdf->download('invoice.pdf');
         // return view('reports.employe',compact('qrcode'));
+    }
+
+    public function PrintEmployes(){
+        
+        if (Auth::user()->super == 1) {
+            $oEmployes = Employe::all();
+        }
+        else{
+            $oEmployes = Employe::where('idSociete',Auth::user()->idSociete)->get();
+        }
+
+        $aData[] = ['Nom','Prenom','CIN','Status','Societe','Telephone1','Telephone2','Email','Adresse','DateNaissance','Nationalite','Sexe','Situation','EtatCovid','Raison'];
+
+        foreach ($oEmployes as $item ) {
+            if ($item->etatcovid==1) {
+                $etatCovid = "Guérit";
+            }
+            if ($item->etatcovid==2) {
+                $etatCovid = "Mort";
+            }
+            if ($item->etatcovid==3) {
+                $etatCovid = "Positif";
+            }
+            if ($item->etatcovid==4) {
+                $etatCovid = "Négative";
+            }
+
+            $aData[] = [
+                'Nom'=>$item->name,
+                'Prenom'=>$item->prenom,
+                'CIN'=>$item->CIN,
+                'Status'=>($item->status == 1 ) ? 'Active' : 'Desactiver',
+                'Societe'=> $item->Societe ? $item->Societe->name : "",
+                'Telephone1'=>$item->telephone1,
+                'Telephone2'=>$item->telephone2,
+                'Email'=>$item->email,
+                'Adresse'=>$item->adresse,
+                'DateNaissance'=>$item->birthdate,
+                'Nationalite'=>$item->nationalite,
+                'Sexe'=>$item->sexe,
+                'Situation'=>$item->situation,
+                'EtatCovid'=>$etatCovid,
+                'Raison'=>$item->raison
+            ];
+        }
+
+        $export = new EmployeExport($aData);
+
+        $filename = now()->timestamp;
+        return Excel::download($export,'personel-'.$filename.'.xlsx');
     }
 }

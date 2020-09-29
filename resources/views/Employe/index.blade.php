@@ -4,11 +4,12 @@
 <div class="container mt-5">
     <h1 class="titre-page-default">Personels</h1>   
     <div class="d-flex align-items-center header-top-search">
-        <a href="{{ route('employe.create')}}" class="btn btn-default add-btn">New</a> 
+        <a href="{{ route('employe.create')}}" class="btn btn-default add-btn"><i class="fa fa-1x fa-plus"></i></a> 
         <div class="bloc-form-search">
         {{Form::open(['route' => ['searchemploye']])}}
             <input name="search" class="form-control" type="text" placeholder="Search..." />
             <button type="submit" class="btn btn-default"> <i class="fa fa-1x fa-search"></i></button>
+            <a href="{{ route('printemployes')}}" class="btn btn-default add-btn float-left"><i class="fa fa-1x fa-print"></i></a> 
         {{ Form::close() }}
         </div>
     </div>
@@ -34,7 +35,7 @@
                         desactiver
                     @endif
                 </td>
-                <td>{{$employe->Societe->name}}</td>
+                <td>{{$employe->Societe ? $employe->Societe->name : ""}}</td>
                 <td style="text-align:right">
                     <a href="{{ route('employe.edit',$employe->id)}}" class="btn btn-default"><i class="fas fa-pen"></i></a>
                     <a href="{{ route('employe.show',$employe->id)}}" class="btn btn-default" title="Detail"><i class="far fa-eye"></i></a>

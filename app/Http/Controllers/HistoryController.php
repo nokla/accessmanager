@@ -91,10 +91,14 @@ class HistoryController extends Controller
         }
         else{
             $idSociete=Auth::user()->idSociete;
+
             $oHistories = History::whereHas('employe', function (Builder $query) use ($idSociete) {
                 $query->where('idSociete',$idSociete);
             })->whereNull('bRetard')->limit($iRowPerPage)->offset($iRow)->get();
-            $iTotalRecords = count($oHistories);
+
+            $iTotalRecords = History::whereHas('employe', function (Builder $query) use ($idSociete) {
+                                $query->where('idSociete',$idSociete);
+                            })->whereNull('bRetard')->count();
         }
 
         $iTotalDisplayRecords = count($oHistories);
@@ -132,7 +136,10 @@ class HistoryController extends Controller
             $oHistories = History::whereHas('employe', function (Builder $query) use ($idSociete) {
                 $query->where('idSociete',$idSociete);
             })->whereNotNull('bRetard')->limit($iRowPerPage)->offset($iRow)->get();
-            $iTotalRecords = count($oHistories);
+
+            $iTotalRecords = History::whereHas('employe', function (Builder $query) use ($idSociete) {
+                $query->where('idSociete',$idSociete);
+            })->whereNotNull('bRetard')->count();
         }
 
         $iTotalDisplayRecords = count($oHistories);
@@ -141,7 +148,7 @@ class HistoryController extends Controller
             array_push($data,[
                 "name"=>$item->Employe->name,
                 "cin"=>$item->Employe->CIN,
-                "societe"=>$item->Employe->Societe->name,
+                "societe"=> $item->Employe->Societe ? $item->Employe->Societe->name : "",
                 "retard"=>$item->bRetard==1 ? "Oui" : "Non",
                 "dScan"=>$item->dScan
             ]);
@@ -172,14 +179,14 @@ class HistoryController extends Controller
     {
         $aHistories = History::whereHas('employe', function (Builder $query) use ($id) {
             $query->where('idSociete',$id);
-        })->get();
+        })->whereNotNull('bRetard')->get();
 
         $aData[] = ['Nom','CIN','Status','Societe','Date scan','Retard'];
         foreach ($aHistories as $item ) {
                 $aData[] = [
                     'Nom'=>$item->Employe->name,
                     'CIN'=>$item->Employe->CIN,
-                    'Status'=>(($item->Employe->status == 1 ) ? 'Active' : 'Desactiver'),
+                    'Status'=>($item->Employe->status == 1 ) ? 'Active' : 'Desactiver',
                     'Societe'=>$item->Employe->Societe->name,
                     'Date'=>$item->dScan,
                     'Retard'=>$item->bRetard==1 ? "Oui" : "Non"
