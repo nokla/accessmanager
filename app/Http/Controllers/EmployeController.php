@@ -204,6 +204,7 @@ class EmployeController extends Controller
     public function destroy($id)
     {
         Employe::find($id)->delete();
+        History::where('idEmploye',$id)->delete();
         return Redirect::route('employe.index');
     }
 

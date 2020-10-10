@@ -106,9 +106,9 @@ class HistoryController extends Controller
         $data=[];
         foreach ($oHistories as $item) {
             array_push($data,[
-                "name"=>$item->Employe->name,
-                "cin"=>$item->Employe->CIN,
-                "societe"=>$item->Employe->Societe->name,
+                "name"=>($item->Employe) ? $item->Employe->name : '',
+                "cin"=> ($item->Employe) ? $item->Employe->CIN : '',
+                "societe"=>($item->Employe && $item->Employe->Societe) ? $item->Employe->Societe->name : '',
                 "dScan"=>$item->dScan
             ]);
         }

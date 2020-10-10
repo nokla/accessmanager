@@ -18,7 +18,7 @@
             <tr>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{$user->Societe->name}}</td>
+                <td>{{ ($user->Societe) ? $user->Societe->name : '' }}</td>
                 <td>
                     <a href="{{ route('user.edit',$user->id)}}" class="btn btn-default"><i class="fas fa-pen"></i></a>
                     <button class="btn btn-default btn-supp" onclick="DeleteRecord('{{Route('user.destroy',$user->id)}}')">
