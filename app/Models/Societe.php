@@ -10,7 +10,7 @@ class Societe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name','activite','telephone1','telephone2','adresse','interlocuteur','remarque','tStarts'
+        'name','activite','telephone1','telephone2','adresse','interlocuteur','remarque'
     ];
 
     public static $rules=[
@@ -20,8 +20,7 @@ class Societe extends Model
         'telephone2'=>'nullable|digits_between:10,14',
         'adresse'=>'nullable|string',
         'interlocuteur'=>'nullable|string',
-        'remarque'=>'nullable|string',
-        'tStarts'=>'required|date_format:H:i',
+        'remarque'=>'nullable|string'
     ];
 
     public static $UpdateRules=[
@@ -31,8 +30,7 @@ class Societe extends Model
         'telephone2'=>'nullable|digits_between:10,14',
         'adresse'=>'nullable|string',
         'interlocuteur'=>'nullable|string',
-        'remarque'=>'nullable|string',
-        'tStarts'=>'required|date_format:H:i',
+        'remarque'=>'nullable|string'
     ];
 
     public function Employes(){

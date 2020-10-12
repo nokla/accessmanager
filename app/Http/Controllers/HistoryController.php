@@ -212,20 +212,25 @@ class HistoryController extends Controller
                 'body'=>'employe dont belong to this societe'
             ];
         }
+
+        $dNow = Carbon::now();
+
         $oHistory = new History;
         $oHistory->idEmploye = $oEmploye->id;
-        $oHistory->dScan = Carbon::now();
+        $oHistory->dScan = $dNow;
 
-        $tStart = $oSociete->tStarts;
+        $dFirstScan = History::where("idEmploye",$oEmploye->id)
+            ->whereNull('bRetard')
+            ->whereDate("dScan", $dNow->toDateString())
+            ->latest("dScan")
+            ->first();
 
-        $time = strtotime($tStart);
-        $endTime = strtotime('+30 minutes', $time);
+        $dEndTime = strtotime('+30 minutes', strtotime($dFirstScan->dScan));
         
-        if ($endTime>time()) {
-            $oHistory->bRetard = true;
-        }
-        else
-            $oHistory->bRetard = false;
+        $bRetard = ( $dNow->timestamp > $dEndTime );
+
+        $oHistory->bRetard = $bRetard;
+
         $oHistory->save();
 
         $etatCovid = "";
